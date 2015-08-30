@@ -41,6 +41,7 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " File navigator
 Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
 silent! nmap <F9> :NERDTreeToggle<CR>
 silent! nmap <F10> :NERDTreeFind<CR>
 
