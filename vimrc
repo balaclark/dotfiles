@@ -93,6 +93,8 @@ let g:startify_custom_header = map(split(system('echo Hare Krishna! | cowsay'), 
 
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 
+Plug 'nathanaelkane/vim-indent-guides'
+
 call plug#end()
 
 nmap <Leader><Leader> V
@@ -111,7 +113,13 @@ nnoremap <Leader>q :Sayonara<CR>
 nnoremap <Leader>s :wq<CR>
 nnoremap <Leader>v V
 nnoremap <Leader>g gf
-nnoremap <Leader>t :tabnew<CR>
+
+" Tab fun
+let g:lasttab = 1
+nnoremap <Leader><Leader>t :tabnew<CR>
+nmap <Leader>t :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+
 
 cmap w!! w !sudo tree > dev/null %
 
