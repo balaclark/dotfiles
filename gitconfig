@@ -1,0 +1,19 @@
+[user]
+	email = balaclark@gmail.com
+	name = Bala Clark
+[push]
+	default = simple
+	followTags = true
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = vim
+	autocrlf = input
+[credential]
+	helper = osxkeychain
+[alias]
+	ci = commit
+	co = checkout
+	st = status
+	br = branch
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	my = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=short --reverse --all --since=1.month.ago --author='Bala Clark'
