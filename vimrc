@@ -54,11 +54,10 @@ Plug 'vim-scripts/SmartCase'
 Plug 'vim-scripts/gitignore'
 
 " Colorschemes
-"Plug 'junegunn/seoul259.vim'
-"set background=dark
-"let g:seoul256_background = 234
-"colo seoul256
-"set t_ut=
+Plug 'junegunn/seoul256.vim'
+set background=dark
+let g:seoul256_background = 234
+set t_ut= " makes this work in tmux
 
 " Strip whitespace etc.
 Plug 'editorconfig/editorconfig-vim'
@@ -75,7 +74,7 @@ Plug 'ervandew/supertab'
 " Linting
 Plug 'scrooloose/syntastic'
 let g:syntastic_javascript_checkers = ['jshint', 'jscs']
-" let g:syntastic_javascript_checkers = ['standard']
+"let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_php_checkers = ['php']
 
 " Git integration
@@ -131,7 +130,7 @@ nnoremap H 0-
 nnoremap L $
 
 set encoding=utf-8
-"set colorcolumn=80,120
+set colorcolumn=80,120
 set clipboard=unnamed
 
 " show invisibles
@@ -148,7 +147,8 @@ set fillchars="fold: "
 " turn off markdown folding. literally what.
 let g:vim_markdown_folding_disabled=1
 
-silent! colorscheme wombat256mod
+"silent! colorscheme wombat256mod
+silent! colorscheme seoul256
 
 command! -bar Tags if !empty(tagfiles()) | call fzf#run({
 \   'source': "sed '/^\\!/d;s/\t.*//' " . join(tagfiles()) . ' | uniq',
