@@ -42,6 +42,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " File navigator
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
+let NERDTreeShowHidden=1
 silent! nmap <F9> :NERDTreeToggle<CR>
 silent! nmap <F10> :NERDTreeFind<CR>
 
@@ -76,6 +77,7 @@ Plug 'scrooloose/syntastic'
 let g:syntastic_javascript_checkers = ['jshint', 'jscs']
 "let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_php_checkers = ['php']
+let g:syntastic_jade_checkers = ['jade_lint']
 
 " Git integration
 Plug 'tpope/vim-fugitive'
@@ -91,9 +93,21 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'mhinz/vim-startify'
 let g:startify_custom_header = map(split(system('echo Hare Krishna! | cowsay'), '\n'), '" ". v:val') + ['','']
 
+" Markdown preview
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 
+" Show indent guides
 Plug 'nathanaelkane/vim-indent-guides'
+
+" Move lines
+Plug 'matze/vim-move'
+let g:move_key_modifier = 'C'
+
+" Swap panes
+Plug 'wesQ3/vim-windowswap'
+
+" Show buffers as tabs
+Plug 'ap/vim-buftabline'
 
 call plug#end()
 
@@ -120,6 +134,16 @@ nnoremap <Leader><Leader>t :tabnew<CR>
 nmap <Leader>t :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
+" Buffer fun
+
+" Move to the previous buffer
+nnoremap gp :bp<CR>
+" Move to the next buffer
+nnoremap gn :bn<CR>
+" List all possible buffers
+nnoremap gl :ls<CR>
+" List all possible buffers and accept a new buffer argument [1]
+nnoremap gb :ls<CR>:b
 
 cmap w!! w !sudo tree > dev/null %
 
@@ -154,3 +178,7 @@ command! -bar Tags if !empty(tagfiles()) | call fzf#run({
 \   'source': "sed '/^\\!/d;s/\t.*//' " . join(tagfiles()) . ' | uniq',
 \   'sink':   'tag',
 \ })
+
+" makes ctrl+x ctrl+f work as expected, even in project subfolders
+autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
+autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
