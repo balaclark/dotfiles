@@ -24,7 +24,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " Awesome autocompletion
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+"Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 
 " Lightning fast :Ag searcher
 Plug 'rking/ag.vim'
@@ -122,7 +122,9 @@ nnoremap <silent> p p`]
 nnoremap <CR> G
 nnoremap <BS> gg
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :Sayonara<CR>
+" closes current buffer, but doesn't close the split that it is in
+nnoremap <Leader>q :bp\|bd #<CR>
+"nnoremap <Leader>q :Sayonara<CR>
 " nnoremap <Leader>c :Sayonara!<CR>
 nnoremap <Leader>s :wq<CR>
 nnoremap <Leader>v V
