@@ -9,6 +9,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 " auto generate ctags
 " Plug 'grassdog/tagman.vim'
 
+" auto complete as you type
+Plug 'Shougo/neocomplete.vim'
+
 " Really nice prompt
 Plug 'bling/vim-airline'
 let g:airline_theme='powerlineish'
@@ -108,6 +111,16 @@ Plug 'wesQ3/vim-windowswap'
 
 " Show buffers as tabs
 Plug 'ap/vim-buftabline'
+
+" Go to file in terminal / finder
+Plug 'justinmk/vim-gtfo'
+
+" copy current file path
+Plug 'bag-man/copypath.vim'
+
+" Close all buffers but the current one
+Plug 'vim-scripts/BufOnly.vim'
+nnoremap go :BufOnly<CR>
 
 call plug#end()
 
