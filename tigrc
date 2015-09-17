@@ -1,0 +1,17 @@
+bind main       C       ?git cherry-pick %(commit)
+bind status     C       !git commit
+bind stash      P       ?git stash pop %(stash)
+bind stash      !       ?git stash drop %(stash)
+bind refs       C       ?git checkout %(branch)
+bind refs       !       ?git branch -D %(branch)
+bind refs       D       ?git push origin --delete %(branch)
+bind blame      v       view-diff %(commit)
+bind refs       P       ?git push origin %(branch)
+bind main       B       ?git checkout -b "%(prompt Enter new branch name: )"
+bind refs       B       ?@git checkout -b "%(prompt Enter new branch name: )"
+bind refs       M       !git merge --no-ff %(branch)
+bind refs       P       !hub pull-request
+bind status     b       ?@git checkout "%(prompt Enter branch name: )"
+bind tree       t       !find %(directory) -path ./node_modules -prune -o -name *%(prompt)*
+bind main c ?git checkout %(commit)
+bind main Y !@sh -c "echo -n %(commit) | xclip -selection c"
