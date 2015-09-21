@@ -85,6 +85,7 @@ let g:syntastic_jade_checkers = ['jade_lint']
 " Git integration
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+nnoremap <Leader>b :Gblame<CR>
 
 " JSON mode
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -117,10 +118,17 @@ Plug 'justinmk/vim-gtfo'
 
 " copy current file path
 Plug 'bag-man/copypath.vim'
+nnoremap cp :CopyRelativePath<CR>
 
 " Close all buffers but the current one
 Plug 'vim-scripts/BufOnly.vim'
 nnoremap go :BufOnly<CR>
+
+" Vim sessions
+Plug 'tpope/vim-obsession'
+
+" toggle booleans with ctrl+a/x
+Plug 'can3p/incbool.vim'
 
 call plug#end()
 
@@ -183,6 +191,11 @@ set nocursorline
 set foldmethod=indent
 set fillchars="fold: "
 
+" ctrl+c to toggle highlight.
+"let hlstate=0
+"nnoremap <c-c> :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
+nnoremap <c-c> :noh<CR>
+
 " turn off markdown folding. literally what.
 let g:vim_markdown_folding_disabled=1
 
@@ -195,5 +208,5 @@ command! -bar Tags if !empty(tagfiles()) | call fzf#run({
 \ })
 
 " makes ctrl+x ctrl+f work as expected, even in project subfolders
-autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
-autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
+"autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
+"autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
