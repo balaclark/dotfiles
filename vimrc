@@ -116,7 +116,7 @@ Plug 'ap/vim-buftabline'
 " Go to file in terminal / finder
 Plug 'justinmk/vim-gtfo'
 
-" copy current file path
+" Copy current file path
 Plug 'bag-man/copypath.vim'
 nnoremap cp :CopyRelativePath<CR>
 
@@ -127,8 +127,13 @@ nnoremap go :BufOnly<CR>
 " Vim sessions
 Plug 'tpope/vim-obsession'
 
-" toggle booleans with ctrl+a/x
+" Toggle booleans and dates with ctrl+a/x
 Plug 'can3p/incbool.vim'
+Plug 'tpope/vim-speeddating'
+
+" Color hex codes and color names
+Plug 'chrisbra/Colorizer'
+let g:colorizer_auto_filetype='css,html,stylus,jade,less,sass'
 
 call plug#end()
 
