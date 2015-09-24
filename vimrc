@@ -196,6 +196,9 @@ set nocursorline
 set foldmethod=indent
 set fillchars="fold: "
 
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+
 " ctrl+c to toggle highlight.
 "let hlstate=0
 "nnoremap <c-c> :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
