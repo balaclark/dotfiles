@@ -8,3 +8,11 @@ Setup
 
 * Install [vim-plug](https://github.com/junegunn/vim-plug)
 * `./bin/setup`
+
+Vim
+---
+
+```sh
+vim
+:PlugInstall
+```
