@@ -135,6 +135,9 @@ Plug 'tpope/vim-speeddating'
 Plug 'chrisbra/Colorizer'
 let g:colorizer_auto_filetype='css,html,stylus,jade,less,sass'
 
+" :e file:108
+Plug 'bogado/file-line'
+
 " File explorer
 "Plug 'Shougo/unite.vim'
 "Plug 'Shougo/vimfiler.vim'
