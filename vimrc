@@ -166,6 +166,9 @@ nnoremap <Leader>s :wq<CR>
 nnoremap <Leader>v V
 nnoremap <Leader>g gf
 
+" easy way to copy the current mocha test into the next pending one
+noremap cf{jt,lv$%y}jt)p
+
 " Tab fun
 let g:lasttab = 1
 nnoremap <Leader><Leader>t :tabnew<CR>
