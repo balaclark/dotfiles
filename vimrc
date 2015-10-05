@@ -170,7 +170,7 @@ nnoremap <Leader>v V
 nnoremap <Leader>g gf
 
 " easy way to copy the current mocha test into the next pending one
-nnoremap <silent> <Plug>TransposeCharacters {jt,lv$%y}jt)p
+nnoremap <silent> <Plug>TransposeCharacters {jt,lv$%y}jt)pj^
 \:call repeat#set("\<Plug>TransposeCharacters")<CR>
 nmap cf <Plug>TransposeCharacters
 
