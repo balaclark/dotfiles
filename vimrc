@@ -141,6 +141,9 @@ Plug 'bogado/file-line'
 " Edit your surroundings (e.g. change the surrounding double quotes to single)
 Plug 'tpope/vim-surround'
 
+" Add repeat support to more stuff
+Plug 'tpope/vim-repeat'
+
 " File explorer
 "Plug 'Shougo/unite.vim'
 "Plug 'Shougo/vimfiler.vim'
@@ -167,7 +170,9 @@ nnoremap <Leader>v V
 nnoremap <Leader>g gf
 
 " easy way to copy the current mocha test into the next pending one
-noremap cf{jt,lv$%y}jt)p
+nnoremap <silent> <Plug>TransposeCharacters {jt,lv$%y}jt)p
+\:call repeat#set("\<Plug>TransposeCharacters")<CR>
+nmap cf <Plug>TransposeCharacters
 
 " Tab fun
 let g:lasttab = 1
