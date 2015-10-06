@@ -234,5 +234,9 @@ command! -bar Tags if !empty(tagfiles()) | call fzf#run({
 \ })
 
 " makes ctrl+x ctrl+f work as expected, even in project subfolders
-"autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
-"autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
+autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
+autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
+
+" auto complete file paths
+inoremap <F10> <C-X><C-F>
+
