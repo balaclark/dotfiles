@@ -28,6 +28,11 @@ test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_in
 
 export PATH=~/bin:$PATH
 
+RUBYGEMS="$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
+if [[ -d $RUBYGEMS ]]; then
+  PATH="$RUBYGEMS:$PATH"
+fi
+
 # install global npm packages in ~
 export NPM_PACKAGES="${HOME}/.npm-packages"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
