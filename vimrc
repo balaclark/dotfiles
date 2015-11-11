@@ -125,9 +125,6 @@ nnoremap cp :CopyRelativePath<CR>
 Plug 'vim-scripts/BufOnly.vim'
 nnoremap go :BufOnly<CR>
 
-" Vim sessions
-Plug 'tpope/vim-obsession'
-
 " Toggle booleans and dates with ctrl+a/x
 Plug 'can3p/incbool.vim'
 Plug 'tpope/vim-speeddating'
