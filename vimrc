@@ -146,6 +146,9 @@ Plug 'tpope/vim-repeat'
 "Plug 'Shougo/unite.vim'
 "Plug 'Shougo/vimfiler.vim'
 
+" Detect spaces / tabs
+Plug 'tpope/vim-sleuth'
+
 call plug#end()
 
 nmap <Leader><Leader> V
