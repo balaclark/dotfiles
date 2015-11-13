@@ -149,6 +149,10 @@ Plug 'tpope/vim-repeat'
 " Detect spaces / tabs
 Plug 'tpope/vim-sleuth'
 
+" Autoload changes made outside vim (e.g. git)
+Plug 'tmux-plugins/vim-tmux-focus-events'
+set autoread
+
 call plug#end()
 
 nmap <Leader><Leader> V
