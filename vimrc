@@ -134,7 +134,7 @@ Plug 'chrisbra/Colorizer'
 let g:colorizer_auto_filetype='css,html,stylus,jade,less,sass'
 
 " :e file:108
-Plug 'bogado/file-line'
+Plug 'kopischke/vim-fetch'
 
 " Edit your surroundings (e.g. change the surrounding double quotes to single)
 Plug 'tpope/vim-surround'
@@ -150,8 +150,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 
 " Autoload changes made outside vim (e.g. git)
-Plug 'tmux-plugins/vim-tmux-focus-events'
 set autoread
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 call plug#end()
 

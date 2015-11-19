@@ -33,6 +33,8 @@ if [[ -d $RUBYGEMS ]]; then
   PATH="$RUBYGEMS:$PATH"
 fi
 
+export TZ=UTC
+
 # install global npm packages in ~
 export NPM_PACKAGES="${HOME}/.npm-packages"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
