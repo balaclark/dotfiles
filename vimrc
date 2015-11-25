@@ -5,7 +5,22 @@ call plug#begin()
 
 Plug 'sheerun/vimrc'
 Plug 'sheerun/vim-polyglot'
+
+" Awesome Ctrl+P
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf.vim'
+
+  map <c-x><c-k> <Plug>(fzf-complete-word)
+  imap <c-x><c-j> <Plug>(fzf-complete-file-ag)
+  imap <c-x><c-l> <Plug>(fzf-complete-line)
+
+  nnoremap <silent> <C-  map <c-x><c-k> <Plug>(fzf-complete-word)
+  imap <c-x><c-j> <Plug>(fzf-complete-file-ag)
+  imap <c-x><c-l> <Plug>(fzf-complete-line)
+
+  nnoremap <silent> <Leader><Enter> :Buffers<CR>p> :Files<CR>
+  nnoremap <silent> <Leader><Enter> :Buffers<CR>
+
 " auto generate ctags
 " Plug 'grassdog/tagman.vim'
 
