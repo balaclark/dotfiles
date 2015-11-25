@@ -29,15 +29,17 @@ Plug 'Shougo/neocomplete.vim'
 
 " Really nice prompt
 Plug 'bling/vim-airline'
-let g:airline_theme='powerlineish'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_section_z=''
+
+  let g:airline_theme='powerlineish'
+  let g:airline_left_sep=''
+  let g:airline_right_sep=''
+  let g:airline_section_z=''
 
 " Press v over and over again to expand selection
 Plug 'terryma/vim-expand-region'
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
+
+  vmap v <Plug>(expand_region_expand)
+  vmap <C-v> <Plug>(expand_region_shrink)
 
 " Awesome autocompletion
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
@@ -49,8 +51,9 @@ Plug 'rking/ag.vim'
 
 " Expand / wrap hashes etc.
 Plug 'AndrewRadev/splitjoin.vim'
-nmap sj :SplitjoinSplit<cr>
-nmap sk :SplitjoinJoin<cr>
+
+  nmap sj :SplitjoinSplit<cr>
+  nmap sk :SplitjoinJoin<cr>
 
 Plug 'moll/vim-node', { 'for': 'javascript' }
 
@@ -60,9 +63,10 @@ Plug 'christoomey/vim-tmux-navigator'
 " File navigator
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
-let NERDTreeShowHidden=1
-silent! nmap <F9> :NERDTreeToggle<CR>
-silent! nmap <F10> :NERDTreeFind<CR>
+
+  let NERDTreeShowHidden=1
+  silent! nmap <F9> :NERDTreeToggle<CR>
+  silent! nmap <F10> :NERDTreeFind<CR>
 
 " Comment code
 Plug 'scrooloose/nerdcommenter'
@@ -74,9 +78,10 @@ Plug 'vim-scripts/gitignore'
 
 " Colorschemes
 Plug 'junegunn/seoul256.vim'
-set background=dark
-let g:seoul256_background = 234
-set t_ut= " makes this work in tmux
+
+  set background=dark
+  let g:seoul256_background = 234
+  set t_ut= " makes this work in tmux
 
 " Strip whitespace etc.
 Plug 'editorconfig/editorconfig-vim'
@@ -107,7 +112,8 @@ Plug 'scrooloose/syntastic'
 " Git integration
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-nnoremap <Leader>b :Gblame<CR>
+
+  nnoremap <Leader>b :Gblame<CR>
 
 " JSON mode
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -117,7 +123,8 @@ Plug 'terryma/vim-multiple-cursors'
 
 " Start page
 Plug 'mhinz/vim-startify'
-let g:startify_custom_header = map(split(system('echo Hare Krishna! | cowsay'), '\n'), '" ". v:val') + ['','']
+
+  let g:startify_custom_header = map(split(system('echo Hare Krishna! | cowsay'), '\n'), '" ". v:val') + ['','']
 
 " Markdown preview
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
@@ -127,7 +134,8 @@ Plug 'nathanaelkane/vim-indent-guides'
 
 " Move lines
 Plug 'matze/vim-move'
-let g:move_key_modifier = 'C'
+
+  let g:move_key_modifier = 'C'
 
 " Swap panes
 Plug 'wesQ3/vim-windowswap'
@@ -140,7 +148,8 @@ Plug 'justinmk/vim-gtfo'
 
 " Copy current file path
 Plug 'bag-man/copypath.vim'
-nnoremap cp :CopyRelativePath<CR>
+
+  nnoremap cp :CopyRelativePath<CR>
 
 " Close all buffers but the current one
 Plug 'vim-scripts/BufOnly.vim'
@@ -152,7 +161,8 @@ Plug 'tpope/vim-speeddating'
 
 " Color hex codes and color names
 Plug 'chrisbra/Colorizer'
-let g:colorizer_auto_filetype='css,html,stylus,jade,less,sass'
+
+  let g:colorizer_auto_filetype='css,html,stylus,jade,less,sass'
 
 " :e file:108
 Plug 'kopischke/vim-fetch'
@@ -171,10 +181,11 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 
 " Autoload changes made outside vim (e.g. git)
-set autoread
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
 call plug#end()
+
+set autoread
 
 nmap <Leader><Leader> V
 
