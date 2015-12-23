@@ -98,16 +98,12 @@ Plug 'ervandew/supertab'
 " Linting
 Plug 'scrooloose/syntastic'
 
-  if filereadable(".jshintrc") && filereadable(".jscsrc")
-    let g:syntastic_javascript_checkers = ['jshint', 'jscs']
-  elseif filereadable(".eslintrc")
-    let g:syntastic_javascript_checkers = ['eslint']
-  else
-    let g:syntastic_javascript_checkers = ['standard']
-  endif
+  let g:syntastic_javascript_checkers = ['standard']
   let g:syntastic_php_checkers = ['php']
   let g:syntastic_jade_checkers = ['jade_lint']
   let g:syntastic_aggregate_errors = 1
+
+Plug 'benjaminparnell/vim-switchblade'
 
 " Git integration
 Plug 'tpope/vim-fugitive'
@@ -207,7 +203,7 @@ nnoremap <Leader>v V
 nnoremap <Leader>g gf
 
 " easy way to copy the current mocha test into the next pending one
-nnoremap <silent> <Plug>TransposeCharacters {jt,lv$%y}jt)pj^
+nnoremap <silent> <Plug>TransposeCharacters {jf,vf{%y}jt)p
 \:call repeat#set("\<Plug>TransposeCharacters")<CR>
 nmap cf <Plug>TransposeCharacters
 
@@ -230,8 +226,10 @@ nnoremap gb :ls<CR>:b
 
 cmap w!! w !sudo tree > dev/null %
 
-" Remove trailing whitespaces
-" nnoremap <silent> <Leader><BS> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:w<CR>
+" Support resizing in tmux
+if exists('$TMUX')
+  set ttymouse=xterm2
+endif
 
 nnoremap H 0-
 nnoremap L $
