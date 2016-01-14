@@ -179,6 +179,9 @@ Plug 'tpope/vim-sleuth'
 " Autoload changes made outside vim (e.g. git)
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
+" Faster keyboard nav within files
+Plug 'easymotion/vim-easymotion'
+
 call plug#end()
 
 set autoread
