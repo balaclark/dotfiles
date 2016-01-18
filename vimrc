@@ -182,6 +182,12 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 " Faster keyboard nav within files
 Plug 'easymotion/vim-easymotion'
 
+  " replace native / with easymotion search
+  map  / <Plug>(easymotion-sn)
+  omap / <Plug>(easymotion-tn)
+  map  n <Plug>(easymotion-next)
+  map  N <Plug>(easymotion-prev)
+
 call plug#end()
 
 set autoread
@@ -215,6 +221,8 @@ let g:lasttab = 1
 nnoremap <Leader><Leader>t :tabnew<CR>
 nmap <Leader>t :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
+nmap tn :tabn<CR>
+nmap tp :tabp<CR>
 
 " Buffer fun
 
