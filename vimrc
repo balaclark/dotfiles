@@ -49,6 +49,8 @@ Plug 'terryma/vim-expand-region'
 " Lightning fast :Ag searcher
 Plug 'rking/ag.vim'
 
+  nnoremap \ :Ag<SPACE>
+
 " Expand / wrap hashes etc.
 Plug 'AndrewRadev/splitjoin.vim'
 
@@ -188,6 +190,9 @@ Plug 'easymotion/vim-easymotion'
   map  n <Plug>(easymotion-next)
   map  N <Plug>(easymotion-prev)
 
+  " search whole file
+  nmap s gg<Plug>(easymotion-w)
+
 call plug#end()
 
 set autoread
@@ -223,6 +228,7 @@ nmap <Leader>t :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 nmap tn :tabn<CR>
 nmap tp :tabp<CR>
+nmap tq :tabc<CR>
 
 " Buffer fun
 
@@ -284,7 +290,7 @@ autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
 autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 
 " auto complete file paths
-inoremap <F10> <C-X><C-F>
+"inoremap <F10> <C-X><C-F>
 
 " macvim / gvim options
 
