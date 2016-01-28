@@ -191,7 +191,7 @@ Plug 'easymotion/vim-easymotion'
   map  N <Plug>(easymotion-prev)
 
   " search whole file
-  nmap s gg<Plug>(easymotion-w)
+  nmap s <Plug>(easymotion-w)
 
 call plug#end()
 
