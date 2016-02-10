@@ -44,3 +44,16 @@ unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
 export EDITOR=vim
+
+# clock specific workflows (thanks to Ash)
+
+comms-deploy() {
+  comms order $1 $2 prepare $3 && comms order $1 $2 install $3
+}
+
+copyDatabase() {
+  site=$(node -e "console.log(require('./config.json').$SRC.domain.replace('http://', ''))")
+  ssh -N -f -M -S /tmp/file-sock -L 27018:127.0.0.1:27017 $site
+  DBHOST=localhost:27018 pliers copyDatabase
+  ssh -S /tmp/file-sock -O exit $site
+}
