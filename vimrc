@@ -193,6 +193,11 @@ Plug 'easymotion/vim-easymotion'
   " search whole file
   nmap s <Plug>(easymotion-w)
 
+" Manage TODOs in code
+Plug 'vim-scripts/TaskList.vim'
+
+  nmap <Leader>T <Plug>TaskList
+
 call plug#end()
 
 set autoread
