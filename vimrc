@@ -1,5 +1,6 @@
 let mapleader = "\<Space>"
 let maplocalleader = ","
+let g:original_pwd = getcwd()
 
 call plug#begin()
 
@@ -20,6 +21,8 @@ Plug 'junegunn/fzf.vim'
 
   nnoremap <silent> <Leader><Enter> :Buffers<CR>p> :Files<CR>
   nnoremap <silent> <Leader><Enter> :Buffers<CR>
+
+  nnoremap <Leader>o :call fzf#run({ 'dir': g:original_pwd })<CR>
 
 " auto generate ctags
 " Plug 'grassdog/tagman.vim'
@@ -67,7 +70,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 
   let NERDTreeShowHidden=1
-  silent! nmap <F9> :NERDTreeToggle<CR>
+
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+  silent! nmap <F9> :call g:NERDTreeCreator.ToggleTabTree(g:original_pwd)<CR>
   silent! nmap <F10> :NERDTreeFind<CR>
 
 " Comment code
@@ -216,8 +223,6 @@ set autoread
 
 nmap <Leader><Leader> V
 
-nnoremap <Leader>o :FZF<CR>
-
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
@@ -303,8 +308,8 @@ command! -bar Tags if !empty(tagfiles()) | call fzf#run({
 \ })
 
 " makes ctrl+x ctrl+f work as expected, even in project subfolders
-autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
-autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
+set autochdir
+inoremap <C-f> <C-x><C-f>
 
 " auto complete file paths
 "inoremap <F10> <C-X><C-F>
