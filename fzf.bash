@@ -18,5 +18,3 @@ fi
 # ------------
 source "/Users/bala/.fzf/shell/key-bindings.bash"
 
-# Setting ag as the default source for fzf
-export FZF_DEFAULT_COMMAND='ag -l -g ""'
