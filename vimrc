@@ -21,6 +21,22 @@ Plug 'junegunn/fzf.vim'
   nnoremap <silent> <Leader><Enter> :Buffers<CR>p> :Files<CR>
   nnoremap <silent> <Leader><Enter> :Buffers<CR>
 
+  " Use FZF to fuzzy find tags
+  command! -bar Tags if !empty(tagfiles()) | call fzf#run({
+  \   'source': "sed '/^\\!/d;s/\t.*//' " . join(tagfiles()) . ' | uniq',
+  \   'sink':   'tag',
+  \ })
+  nnoremap <leader>. :Tags<cr>
+
+" Regular Ctrl+P for guivims
+Plug 'ctrlpvim/ctrlp.vim'
+
+if has("gui_running")
+  nnoremap <Leader>o :CtrlP<CR>
+else 
+  nnoremap <Leader>o :FZF<CR>
+endif
+
 " auto generate ctags
 " Plug 'grassdog/tagman.vim'
 
@@ -29,6 +45,7 @@ Plug 'Shougo/neocomplete.vim'
 
 " Really nice prompt
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
   let g:airline_theme='powerlineish'
   let g:airline_left_sep=''
@@ -51,12 +68,6 @@ Plug 'rking/ag.vim'
 
   nnoremap \ :Ag<SPACE>
 
-" Expand / wrap hashes etc.
-Plug 'AndrewRadev/splitjoin.vim'
-
-  nmap sj :SplitjoinSplit<cr>
-  nmap sk :SplitjoinJoin<cr>
-
 Plug 'moll/vim-node', { 'for': 'javascript' }
 
 " Navitate freely between tmux and vim
@@ -67,8 +78,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 
   let NERDTreeShowHidden=1
-  silent! nmap <F9> :NERDTreeToggle<CR>
-  silent! nmap <F10> :NERDTreeFind<CR>
+  silent! nmap <Tab><Tab> :NERDTreeToggle<CR>
+  silent! nmap <Leader>f :NERDTreeFind<CR>
 
 " Comment code
 Plug 'scrooloose/nerdcommenter'
@@ -184,14 +195,22 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 " Faster keyboard nav within files
 Plug 'easymotion/vim-easymotion'
 
+  "let g:EasyMotion_do_mapping = 0
+  let g:EasyMotion_smartcase = 1
+
+  map <Leader>l <Plug>(easymotion-lineforward)
+  map <Leader>j <Plug>(easymotion-j)
+  map <Leader>k <Plug>(easymotion-k)
+  map <Leader>h <Plug>(easymotion-linebackward)
+
+  " search whole file
+  nmap s <Plug>(easymotion-w)
+
   " replace native / with easymotion search
   map  / <Plug>(easymotion-sn)
   omap / <Plug>(easymotion-tn)
   map  n <Plug>(easymotion-next)
   map  N <Plug>(easymotion-prev)
-
-  " search whole file
-  nmap s <Plug>(easymotion-w)
 
 " Manage TODOs in code
 Plug 'vim-scripts/TaskList.vim'
@@ -210,13 +229,12 @@ Plug 'bkad/CamelCaseMotion'
   sunmap e
   sunmap ge
 
+" Better session management
+Plug 'tpope/vim-obsession'
+
 call plug#end()
 
 set autoread
-
-nmap <Leader><Leader> V
-
-nnoremap <Leader>o :FZF<CR>
 
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
@@ -297,14 +315,9 @@ let g:vim_markdown_folding_disabled=1
 "silent! colorscheme wombat256mod
 silent! colorscheme seoul256
 
-command! -bar Tags if !empty(tagfiles()) | call fzf#run({
-\   'source': "sed '/^\\!/d;s/\t.*//' " . join(tagfiles()) . ' | uniq',
-\   'sink':   'tag',
-\ })
-
 " makes ctrl+x ctrl+f work as expected, even in project subfolders
-autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
-autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
+"autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
+"autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 
 " auto complete file paths
 "inoremap <F10> <C-X><C-F>
