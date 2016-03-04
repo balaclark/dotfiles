@@ -322,6 +322,10 @@ silent! colorscheme seoul256
 " auto complete file paths
 "inoremap <F10> <C-X><C-F>
 
+" mor speed
+set lazyredraw
+set ttyfast
+
 " macvim / gvim options
 
 " no scrollbars
