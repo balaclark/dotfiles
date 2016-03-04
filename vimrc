@@ -322,6 +322,22 @@ silent! colorscheme seoul256
 " auto complete file paths
 "inoremap <F10> <C-X><C-F>
 
+" platform specific configs
+if has("unix")
+  let s:uname = system("uname -s")
+
+  " OS X
+  if s:uname == "Darwin\n"
+    map <Leader>, :!gitup<CR><CR>
+  endif
+
+  " Linux
+  if s:uname == "Linux"
+    map <Leader>, :!meld<CR><CR>
+  endif
+
+endif
+
 " mor speed
 set lazyredraw
 set ttyfast
