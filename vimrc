@@ -1,5 +1,5 @@
-let mapleader = "\<Space>"
 let maplocalleader = ","
+let mapleader = "\<Space>"
 
 call plug#begin()
 
@@ -39,9 +39,6 @@ endif
 
 " auto generate ctags
 " Plug 'grassdog/tagman.vim'
-
-" auto complete as you type
-Plug 'Shougo/neocomplete.vim'
 
 " Really nice prompt
 Plug 'bling/vim-airline'
