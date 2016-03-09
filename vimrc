@@ -63,7 +63,7 @@ Plug 'terryma/vim-expand-region'
 " Lightning fast :Ag searcher
 Plug 'rking/ag.vim'
 
-  nnoremap \ :Ag<SPACE>
+  nnoremap \ :Ag!<SPACE>
 
 " ag the current word
 Plug 'Chun-Yang/vim-action-ag'
