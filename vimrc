@@ -65,6 +65,15 @@ Plug 'rking/ag.vim'
 
   nnoremap \ :Ag<SPACE>
 
+" ag the current word
+Plug 'Chun-Yang/vim-action-ag'
+
+  let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
+  " use * to search current word in normal mode
+  nmap * <Plug>AgActionWord
+  " use * to search selected text in visual mode
+  vmap * <Plug>AgActionVisual
+
 Plug 'moll/vim-node', { 'for': 'javascript' }
 
 " Navitate freely between tmux and vim
