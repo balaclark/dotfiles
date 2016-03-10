@@ -137,7 +137,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'elzr/vim-json', { 'for': 'json' }
 
 " Multiple cursors
-Plug 'terryma/vim-multiple-cursors'
+"Plug 'terryma/vim-multiple-cursors'
 
 " Start page
 Plug 'mhinz/vim-startify'
@@ -277,11 +277,11 @@ nmap tq :tabc<CR>
 " Buffer fun
 
 " Move to the previous buffer
-nnoremap gp :bp<CR>
+nnoremap gh :bp<CR>
 " Move to the next buffer
-nnoremap gn :bn<CR>
+nnoremap gl :bn<CR>
 " List all possible buffers
-nnoremap gl :ls<CR>
+nnoremap gL :ls<CR>
 " List all possible buffers and accept a new buffer argument [1]
 nnoremap gb :ls<CR>:b
 
