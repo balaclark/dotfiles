@@ -37,9 +37,6 @@ else
   nnoremap <Leader>o :FZF<CR>
 endif
 
-" auto generate ctags
-" Plug 'grassdog/tagman.vim'
-
 " Really nice prompt
 Plug 'itchyny/lightline.vim'
 
@@ -67,11 +64,6 @@ Plug 'terryma/vim-expand-region'
 
   vmap v <Plug>(expand_region_expand)
   vmap <C-v> <Plug>(expand_region_shrink)
-
-" Awesome autocompletion
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
-
-"Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 
 " Lightning fast :Ag searcher
 Plug 'rking/ag.vim'
@@ -204,10 +196,6 @@ Plug 'tpope/vim-surround'
 " Add repeat support to more stuff
 Plug 'tpope/vim-repeat'
 
-" File explorer
-"Plug 'Shougo/unite.vim'
-"Plug 'Shougo/vimfiler.vim'
-
 " Detect spaces / tabs
 Plug 'tpope/vim-sleuth'
 
@@ -267,8 +255,6 @@ nnoremap <BS> gg
 nnoremap <Leader>w :w<CR>
 " closes current buffer, but doesn't close the split that it is in
 nnoremap <Leader>q :bp\|bd #<CR>
-"nnoremap <Leader>q :Sayonara<CR>
-" nnoremap <Leader>c :Sayonara!<CR>
 nnoremap <Leader>s :wq<CR>
 nnoremap <Leader>v V
 nnoremap <Leader>g gf
@@ -326,9 +312,7 @@ set fillchars="fold: "
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
-" ctrl+c to toggle highlight.
-"let hlstate=0
-"nnoremap <c-c> :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
+" ctrl+c to toggle highlight
 nnoremap <c-c> :noh<CR>
 
 " turn off markdown folding. literally what.
@@ -336,10 +320,6 @@ let g:vim_markdown_folding_disabled=1
 
 "silent! colorscheme wombat256mod
 silent! colorscheme seoul256
-
-" makes ctrl+x ctrl+f work as expected, even in project subfolders
-"autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
-"autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 
 " auto complete file paths
 "inoremap <F10> <C-X><C-F>
