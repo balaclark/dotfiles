@@ -24,6 +24,9 @@ ulimit -n 10000
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Setting ag as the default source for fzf
+export FZF_DEFAULT_COMMAND='ag -l -g ""'
+
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
 export PATH=~/bin:$PATH
