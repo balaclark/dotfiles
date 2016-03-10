@@ -87,6 +87,9 @@ Plug 'jistr/vim-nerdtree-tabs'
   silent! nmap <Tab><Tab> :NERDTreeToggle<CR>
   silent! nmap <Leader>f :NERDTreeFind<CR>
 
+" File operations
+Plug 'tpope/vim-eunuch'
+
 " Comment code
 Plug 'scrooloose/nerdcommenter'
 
