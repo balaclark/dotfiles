@@ -242,6 +242,9 @@ Plug 'bkad/CamelCaseMotion'
 " Better session management
 Plug 'tpope/vim-obsession'
 
+" cd to the project root
+Plug 'balaclark/cdprojectroot.vim'
+
 call plug#end()
 
 set autoread
@@ -318,11 +321,8 @@ nnoremap <c-c> :noh<CR>
 " turn off markdown folding. literally what.
 let g:vim_markdown_folding_disabled=1
 
-"silent! colorscheme wombat256mod
 silent! colorscheme seoul256
 
-" auto complete file paths
-"inoremap <F10> <C-X><C-F>
 " folding
 set foldmethod=indent 
 set foldnestmax=10   
