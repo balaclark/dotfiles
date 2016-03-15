@@ -323,6 +323,11 @@ silent! colorscheme seoul256
 
 " auto complete file paths
 "inoremap <F10> <C-X><C-F>
+" folding
+set foldmethod=indent 
+set foldnestmax=10   
+set nofoldenable    
+set foldlevel=1    
 
 " platform specific configs
 if has("unix")
