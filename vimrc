@@ -142,7 +142,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'elzr/vim-json', { 'for': 'json' }
 
 " Multiple cursors
-"Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 
 " Start page
 Plug 'mhinz/vim-startify'
