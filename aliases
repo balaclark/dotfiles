@@ -35,6 +35,8 @@ alias gst='git status'
 alias gpr='gpr() { git fetch && git checkout origin/pr/$1 && pliers -t assets_v2/pliers.js build }; gpr'
 alias gmpr='gmpr() { git fetch && git merge origin/pr/$1 && pliers -t assets_v2/pliers.js build }; gmpr'
 
+alias ghp='nave use 5.7.0 gh pr -B $(git rev-parse --abbrev-ref HEAD)'
+
 # from ben p
 alias tmux='tmux -2'
 alias lock='dm-tool lock'
