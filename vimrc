@@ -216,12 +216,6 @@ Plug 'easymotion/vim-easymotion'
   " search whole file
   nmap s <Plug>(easymotion-w)
 
-  " replace native / with easymotion search
-  map  / <Plug>(easymotion-sn)
-  omap / <Plug>(easymotion-tn)
-  map  n <Plug>(easymotion-next)
-  map  N <Plug>(easymotion-prev)
-
 " Manage TODOs in code
 Plug 'vim-scripts/TaskList.vim'
 
