@@ -41,7 +41,6 @@ endif
 Plug 'itchyny/lightline.vim'
 
   let g:lightline = {
-      \ 'colorscheme': 'seoul256',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
       \ },
@@ -102,13 +101,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'vim-scripts/IndexedSearch'
 Plug 'vim-scripts/SmartCase'
 Plug 'vim-scripts/gitignore'
-
-" Colorschemes
-Plug 'junegunn/seoul256.vim'
-
-  set background=dark
-  let g:seoul256_background = 234
-  set t_ut= " makes this work in tmux
 
 " Strip whitespace etc.
 Plug 'editorconfig/editorconfig-vim'
@@ -245,7 +237,23 @@ Plug 'mattn/emmet-vim'
   let g:user_emmet_install_global = 0
   autocmd FileType html,php,css EmmetInstall
 
+" Colorschemes
+Plug 'junegunn/seoul256.vim'
+
+  let g:seoul256_background = 234
+  set t_ut= " makes this work in tmux
+
+Plug 'scwood/vim-hybrid'
+Plug 'michalbachowski/vim-wombat256mod'
+Plug 'mhinz/vim-janah'
+
+  autocmd ColorScheme janah highlight Normal ctermbg=234
+
 call plug#end()
+
+" set colorscheme
+set background=dark
+colorscheme hybrid
 
 set autoread
 
@@ -321,13 +329,11 @@ nnoremap <c-c> :noh<CR>
 " turn off markdown folding. literally what.
 let g:vim_markdown_folding_disabled=1
 
-silent! colorscheme seoul256
-
 " folding
-set foldmethod=indent 
-set foldnestmax=10   
-set nofoldenable    
-set foldlevel=1    
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=1
 
 " platform specific configs
 if has("unix")
