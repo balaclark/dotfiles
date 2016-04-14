@@ -117,10 +117,17 @@ Plug 'ervandew/supertab'
 " Linting
 Plug 'scrooloose/syntastic'
 
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+
   let g:syntastic_javascript_checkers = ['standard']
   let g:syntastic_php_checkers = ['php']
   let g:syntastic_jade_checkers = ['jade_lint']
+
   let g:syntastic_aggregate_errors = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
 
 Plug 'benjaminparnell/vim-switchblade'
 
