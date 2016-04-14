@@ -146,7 +146,7 @@ Plug 'terryma/vim-multiple-cursors'
 " Start page
 Plug 'mhinz/vim-startify'
 
-  let g:startify_custom_header = map(split(system('echo Hare Krishna! | cowsay'), '\n'), '" ". v:val') + ['','']
+  let g:startify_custom_header_quotes = [['Hare Krishna!'],['Jaya Prabhupada!']]
 
 " Markdown preview
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
