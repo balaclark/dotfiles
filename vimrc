@@ -305,7 +305,7 @@ nnoremap gb :ls<CR>:b
 cmap w!! w !sudo tree > dev/null %
 
 " Support resizing in tmux
-if exists('$TMUX')
+if exists('$TMUX') && !has('nvim')
   set ttymouse=xterm2
 endif
 
