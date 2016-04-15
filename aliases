@@ -43,3 +43,6 @@ alias lock='dm-tool lock'
 
 # tig aliases
 alias ts='tig status'
+
+alias weather='curl http://wttr.in/watford'
+alias moon='curl http://wttr.in/Moon'
