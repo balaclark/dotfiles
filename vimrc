@@ -321,6 +321,11 @@ nnoremap <silent> <Plug>TransposeCharacters {jf,vf{%y}jt)p
 \:call repeat#set("\<Plug>TransposeCharacters")<CR>
 nmap cf <Plug>TransposeCharacters
 
+"" Saved Macros
+
+" select function 
+let @c = 'vf{%'
+
 " Tab fun
 let g:lasttab = 1
 nnoremap <Leader><Leader>t :tabnew<CR>
