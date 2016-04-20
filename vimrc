@@ -352,7 +352,6 @@ endif
 nnoremap H 0-
 nnoremap L $
 
-set encoding=utf-8
 " Go  to buffer by <Leader>#buffernum
 " Source: http://stackoverflow.com/a/6404246/151007
 let i = 1
@@ -362,7 +361,9 @@ while i <= 9
   let i = i + 1
 endwhile
 
-"set encoding=utf-8
+if !has('nvim')
+  set encoding=utf-8
+endif
 set colorcolumn=80,120
 set clipboard=unnamed
 
