@@ -277,7 +277,7 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'tpope/vim-obsession'
 
 " cd to the project root
-Plug 'balaclark/cdprojectroot.vim'
+Plug 'airblade/vim-rooter'
 
 " easy html
 Plug 'mattn/emmet-vim'
