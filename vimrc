@@ -202,6 +202,9 @@ Plug 'wesQ3/vim-windowswap'
 " Show buffers as tabs
 Plug 'ap/vim-buftabline'
 
+  let g:buftabline_numbers = 2
+  "let g:buftabline_indicators = 1
+
 " Go to file in terminal / finder
 Plug 'justinmk/vim-gtfo'
 
@@ -212,7 +215,8 @@ Plug 'bag-man/copypath.vim'
 
 " Close all buffers but the current one
 Plug 'vim-scripts/BufOnly.vim'
-nnoremap go :BufOnly<CR>
+
+  nnoremap go :BufOnly<CR>
 
 " Toggle booleans and dates with ctrl+a/x
 Plug 'can3p/incbool.vim'
@@ -349,6 +353,16 @@ nnoremap H 0-
 nnoremap L $
 
 set encoding=utf-8
+" Go  to buffer by <Leader>#buffernum
+" Source: http://stackoverflow.com/a/6404246/151007
+let i = 1
+" If I have more than 9 windows open I have bigger problems :)
+while i <= 9
+  execute 'nnoremap <Leader>'.i.' :'.i.'wincmd w<CR>'
+  let i = i + 1
+endwhile
+
+"set encoding=utf-8
 set colorcolumn=80,120
 set clipboard=unnamed
 
