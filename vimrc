@@ -41,6 +41,7 @@ endif
 Plug 'itchyny/lightline.vim'
 
   let g:lightline = {
+      \ 'colorscheme': 'PaperColor',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
       \ },
@@ -161,6 +162,9 @@ Plug 'scrooloose/syntastic'
   let g:syntastic_javascript_checkers = ['standard']
   let g:syntastic_php_checkers = ['php']
   let g:syntastic_jade_checkers = ['jade_lint']
+  let g:syntastic_python_checkers = ['python']
+  
+  let g:syntastic_python_python_exec = '/usr/local/bin/python3'
 
   let g:syntastic_aggregate_errors = 1
   let g:syntastic_check_on_open = 1
@@ -202,7 +206,7 @@ Plug 'wesQ3/vim-windowswap'
 " Show buffers as tabs
 Plug 'ap/vim-buftabline'
 
-  let g:buftabline_numbers = 2
+  let g:buftabline_numbers = 1
   "let g:buftabline_indicators = 1
 
 " Go to file in terminal / finder
@@ -293,15 +297,13 @@ Plug 'junegunn/seoul256.vim'
 
 Plug 'scwood/vim-hybrid'
 Plug 'michalbachowski/vim-wombat256mod'
-Plug 'mhinz/vim-janah'
-
-  autocmd ColorScheme janah highlight Normal ctermbg=234
+Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()
 
 " set colorscheme
 set background=dark
-colorscheme hybrid
+colorscheme PaperColor
 
 set autoread
 
@@ -330,7 +332,6 @@ let @c = 'vf{%'
 
 " Tab fun
 let g:lasttab = 1
-nnoremap <Leader><Leader>t :tabnew<CR>
 nmap <Leader>t :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 nmap tn :tabn<CR>
@@ -349,17 +350,10 @@ if exists('$TMUX') && !has('nvim')
   set ttymouse=xterm2
 endif
 
-nnoremap H 0-
+nnoremap H 0
 nnoremap L $
 
-" Go  to buffer by <Leader>#buffernum
-" Source: http://stackoverflow.com/a/6404246/151007
-let i = 1
-" If I have more than 9 windows open I have bigger problems :)
-while i <= 9
-  execute 'nnoremap <Leader>'.i.' :'.i.'wincmd w<CR>'
-  let i = i + 1
-endwhile
+nnoremap <Leader>i :b 
 
 if !has('nvim')
   set encoding=utf-8
@@ -413,6 +407,13 @@ endif
 set lazyredraw
 set ttyfast
 
+"set relativenumber
+
+map Od <C-w>>
+map Oc <C-w><
+map Oa <C-w>+ 
+map Ob <C-w>-
+
 " macvim / gvim options
 
 " no scrollbars
@@ -440,7 +441,7 @@ cnoremap <a-k> <c-\><c-n><c-w>k
 cnoremap <a-h> <c-\><c-n><c-w>h
 cnoremap <a-l> <c-\><c-n><c-w>l
 if has('nvim')
-  tnoremap <Esc> <c-\><c-n>
+  tnoremap <Leader><Esc> <c-\><c-n>
   tnoremap <a-j> <c-\><c-n><c-w>j
   tnoremap <a-k> <c-\><c-n><c-w>k
   tnoremap <a-h> <c-\><c-n><c-w>h
