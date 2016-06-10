@@ -83,7 +83,6 @@
     set t_Co=16
   endif
 
-
   " Y yanks from the cursor to the end of line as expected. See :help Y.
   nnoremap Y y$
 
@@ -255,6 +254,7 @@
 
   " Language support
   Plug 'sheerun/vim-polyglot'
+  Plug 'fatih/vim-go'
 
   " Fuzzy file search
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
@@ -307,10 +307,22 @@
   " Better PHP syntax
   Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 
+  " Linting
+  if has('nvim')
+    Plug 'neomake/neomake'
+
+      let g:neomake_javascript_enabled_makers = ['standard']
+      autocmd BufWinEnter,InsertLeave,TextChanged * update | Neomake
+
+    Plug 'balaclark/vim-switchblade'
+  endif
+
   " Autocomplete
   if has('nvim')
     " https://gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
     Plug 'Shougo/deoplete.nvim'
+    "Plug 'zchee/deoplete-go'
+    "Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 
       let g:deoplete#enable_at_startup = 1
       let g:deoplete#file#enable_buffer_path = 1
