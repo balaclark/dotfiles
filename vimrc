@@ -311,8 +311,22 @@
   if has('nvim')
     Plug 'neomake/neomake'
 
-      let g:neomake_javascript_enabled_makers = ['standard']
+      " make neomake warnings look like syntastic ones
+      let g:neomake_error_sign = {
+      \ 'text': '>>',
+      \ 'texthl': 'ErrorMsg',
+      \ }
+      hi MyWarningMsg ctermbg=3 ctermfg=0
+      let g:neomake_warning_sign = {
+      \ 'text': '>>',
+      \ 'texthl': 'MyWarningMsg',
+      \ }
+
+      " lint as often as we can
       autocmd BufWinEnter,InsertLeave,TextChanged * update | Neomake
+
+      " default JS to standard (other defaults are handled within neomake)
+      let g:neomake_javascript_enabled_makers = ['standard']
 
     Plug 'balaclark/vim-switchblade'
   endif
