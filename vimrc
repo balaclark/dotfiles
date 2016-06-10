@@ -33,7 +33,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 if has("gui_running")
   nnoremap <Leader>o :CtrlP<CR>
-else 
+else
   nnoremap <Leader>o :FZF<CR>
 endif
 
@@ -114,12 +114,12 @@ Plug 'StanAngeloff/php.vim'
 
 
 " Autocomplete
-if !has('nvim') 
+if !has('nvim')
   Plug 'ervandew/supertab'
-else 
+else
   " https://gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
   Plug 'Shougo/deoplete.nvim'
-   
+
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#file#enable_buffer_path = 1
     if !exists('g:deoplete#omni#input_patterns')
@@ -127,7 +127,7 @@ else
     endif
     " let g:deoplete#disable_auto_complete = 1
     autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-    
+
     " omnifuncs
     augroup omnifuncs
       autocmd!
@@ -163,8 +163,11 @@ Plug 'scrooloose/syntastic'
   let g:syntastic_php_checkers = ['php']
   let g:syntastic_jade_checkers = ['jade_lint']
   let g:syntastic_python_checkers = ['python']
-  
+
   let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+
+  let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+  let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
   let g:syntastic_aggregate_errors = 1
   let g:syntastic_check_on_open = 1
@@ -204,10 +207,10 @@ Plug 'matze/vim-move'
 Plug 'wesQ3/vim-windowswap'
 
 " Show buffers as tabs
-Plug 'ap/vim-buftabline'
+"Plug 'ap/vim-buftabline'
 
-  let g:buftabline_numbers = 1
-  "let g:buftabline_indicators = 1
+"  let g:buftabline_numbers = 1
+"  "let g:buftabline_indicators = 1
 
 " Go to file in terminal / finder
 Plug 'justinmk/vim-gtfo'
@@ -299,6 +302,9 @@ Plug 'scwood/vim-hybrid'
 Plug 'michalbachowski/vim-wombat256mod'
 Plug 'NLKNguyen/papercolor-theme'
 
+" Golang
+Plug 'fatih/vim-go'
+
 call plug#end()
 
 " set colorscheme
@@ -327,16 +333,10 @@ nmap cf <Plug>TransposeCharacters
 
 "" Saved Macros
 
-" select function 
+" select function
 let @c = 'vf{%'
 
-" Tab fun
-let g:lasttab = 1
-nmap <Leader>t :exe "tabn ".g:lasttab<CR>
-au TabLeave * let g:lasttab = tabpagenr()
-nmap tn :tabn<CR>
-nmap tp :tabp<CR>
-nmap tq :tabc<CR>
+nnoremap <Leader>tg :te tig status<CR>
 
 " Buffer fun
 
@@ -353,7 +353,7 @@ endif
 nnoremap H 0
 nnoremap L $
 
-nnoremap <Leader>i :b 
+nnoremap <Leader>i :b
 
 if !has('nvim')
   set encoding=utf-8
@@ -404,15 +404,28 @@ if has("unix")
 endif
 
 " mor speed
-set lazyredraw
-set ttyfast
+if !has('nvim')
+  set lazyredraw
+  set ttyfast
+endif
+if has('nvim')
+  set noshowcmd
+endif
 
 "set relativenumber
 
 map Od <C-w>>
 map Oc <C-w><
-map Oa <C-w>+ 
+map Oa <C-w>+
 map Ob <C-w>-
+
+" 'zoom' split
+nnoremap <Leader>z :tab split<CR>
+nnoremap <Leader>zz :tabclose<CR>
+" tabsplit
+if has('nvim')
+  nnoremap <Leader>t :split<CR>:terminal<CR>
+endif
 
 " macvim / gvim options
 

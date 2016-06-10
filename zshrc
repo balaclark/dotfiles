@@ -48,6 +48,11 @@ export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
 export EDITOR=vim
 
+mkdir $HOME/dev/go
+export GOPATH=$HOME/dev/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+
 # clock specific workflows (thanks to Ash)
 
 comms-deploy() {
@@ -60,3 +65,15 @@ copyDatabase() {
   DBHOST=localhost:27018 pliers copyDatabase
   ssh -S /tmp/file-sock -O exit $site
 }
+
+# setup terminal tab title
+function title {
+    if [ "$1" ]
+    then
+        unset PROMPT_COMMAND
+        echo -ne "\033]0;${*}\007"
+    else
+        export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
+    fi
+}
+title
