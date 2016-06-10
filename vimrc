@@ -1,463 +1,433 @@
-let maplocalleader = ","
-let mapleader = "\<Space>"
+"" Basics
+  let maplocalleader = ","
+  let mapleader = "\<Space>"
 
-call plug#begin()
+  " Disable strange Vi defaults.
+  set nocompatible
 
-Plug 'sheerun/vimrc'
-Plug 'sheerun/vim-polyglot'
+  " Turn on filetype plugins (:help filetype-plugin).
+  filetype plugin indent on
 
-" Awesome Ctrl+P
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-Plug 'junegunn/fzf.vim'
+  syntax enable
+  set autoindent
 
-  map <c-x><c-k> <Plug>(fzf-complete-word)
-  imap <c-x><c-j> <Plug>(fzf-complete-file-ag)
-  imap <c-x><c-l> <Plug>(fzf-complete-line)
+  " Allow backspace in insert mode.
+  set backspace=indent,eol,start
 
-  nnoremap <silent> <C-  map <c-x><c-k> <Plug>(fzf-complete-word)
-  imap <c-x><c-j> <Plug>(fzf-complete-file-ag)
-  imap <c-x><c-l> <Plug>(fzf-complete-line)
+  " Disable octal format for number processing.
+  set nrformats-=octal
 
-  nnoremap <silent> <Leader><Enter> :Buffers<CR>p> :Files<CR>
-  nnoremap <silent> <Leader><Enter> :Buffers<CR>
+  " Allow for mappings including `Esc`, while preserving
+  " zero timeout after pressing it manually.
+  set ttimeout
+  set ttimeoutlen=100
 
-  " Use FZF to fuzzy find tags
-  command! -bar Tags if !empty(tagfiles()) | call fzf#run({
-  \   'source': "sed '/^\\!/d;s/\t.*//' " . join(tagfiles()) . ' | uniq',
-  \   'sink':   'tag',
-  \ })
-  nnoremap <leader>. :Tags<cr>
+  " Enable highlighted case-insensitive incremential search.
+  set incsearch
 
-" Regular Ctrl+P for guivims
-Plug 'ctrlpvim/ctrlp.vim'
+  " Use `Ctrl-L` to clear the highlighting of :set hlsearch.
+  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 
-if has("gui_running")
-  nnoremap <Leader>o :CtrlP<CR>
-else
-  nnoremap <Leader>o :FZF<CR>
-endif
+  " Always show window statuses, even if there's only one.
+  set laststatus=2
 
-" Really nice prompt
-Plug 'itchyny/lightline.vim'
+  " Show the line and column number of the cursor position.
+  set ruler
 
-  let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
-      \ },
-      \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
-      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-      \ },
-      \ 'component_visible_condition': {
-      \   'readonly': '(&filetype!="help"&& &readonly)',
-      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
-    \ }
+  " Show the size of block one selected in visual mode.
+  set showcmd
 
-" Press v over and over again to expand selection
-Plug 'terryma/vim-expand-region'
+  " Autocomplete commands using nice menu in place of window status.
+  " Enable `Ctrl-N` and `Ctrl-P` to scroll through matches.
+  set wildmenu
 
-  vmap v <Plug>(expand_region_expand)
-  vmap <C-v> <Plug>(expand_region_shrink)
+  " When 'wrap' is on, display last line even if it doesn't fit.
+  set display+=lastline
 
-" Lightning fast :Ag searcher
-Plug 'rking/ag.vim'
+  " Set default whitespace characters when using `:set list`
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 
-  nnoremap \ :Ag!<SPACE>
+  " Delete comment character when joining commented lines
+  if v:version > 703 || v:version == 703 && has("patch541")
+    set formatoptions+=j
+  endif
 
-" ag the current word
-Plug 'Chun-Yang/vim-action-ag'
+  " Search upwards for tags file instead only locally
+  if has('path_extra')
+    setglobal tags-=./tags tags^=./tags;
+  endif
 
-  let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
-  " use * to search current word in normal mode
-  nmap * <Plug>AgActionWord
-  " use * to search selected text in visual mode
-  vmap * <Plug>AgActionVisual
+  " Reload unchanged files automatically.
+  set autoread
 
-Plug 'moll/vim-node', { 'for': 'javascript' }
+  " Support all kind of EOLs by default.
+  set fileformats+=mac
 
-" Navitate freely between tmux and vim
-Plug 'christoomey/vim-tmux-navigator'
+  " Increase history size to 1000 items.
+  set history=1000
 
-" File navigator
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
+  " Allow for up to 50 opened tabs on Vim start.
+  set tabpagemax=50
 
-  let NERDTreeShowHidden=1
-  silent! nmap <Tab><Tab> :NERDTreeToggle<CR>
-  silent! nmap <Leader>f :NERDTreeFind<CR>
+  " Always save upper case variables to viminfo file.
+  set viminfo^=!
 
-" File operations
-Plug 'tpope/vim-eunuch'
+  " Enable backup and undo files by default.
+  let s:dir = has('win32') ? '$APPDATA/Vim' : isdirectory($HOME.'/Library') ? '~/Library/Vim' : empty($XDG_DATA_HOME) ? '~/.local/share/vim' : '$XDG_DATA_HOME/vim'
+  let &backupdir = expand(s:dir) . '/backup//'
+  let &undodir = expand(s:dir) . '/undo//'
+  set undofile
 
-" Comment code
-Plug 'scrooloose/nerdcommenter'
+  " Allow color schemes to do bright colors without forcing bold.
+  if &t_Co == 8 && $TERM !~# '^linux'
+    set t_Co=16
+  endif
 
-" Better search tools
-Plug 'vim-scripts/IndexedSearch'
-Plug 'vim-scripts/SmartCase'
-Plug 'vim-scripts/gitignore'
+  " Y yanks from the cursor to the end of line as expected. See :help Y.
+  nnoremap Y y$
 
-" Strip whitespace etc.
-Plug 'editorconfig/editorconfig-vim'
+  " Automatically create directories for backup and undo files.
+  if !isdirectory(expand(s:dir))
+    call system("mkdir -p " . expand(s:dir) . "/{backup,undo}")
+  end
 
-" Distraction free mode
-Plug 'junegunn/goyo.vim'
+  " Highlight line under cursor. It helps with navigation.
+  set cursorline
 
-" Better PHP syntax
-Plug 'StanAngeloff/php.vim'
+  " Keep 8 lines above or below the cursor when scrolling.
+  set scrolloff=8
 
+  " Keep 15 columns next to the cursor when scrolling horizontally.
+  set sidescroll=1
+  set sidescrolloff=15
 
-" Autocomplete
-if !has('nvim')
-  Plug 'ervandew/supertab'
-else
-  " https://gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
-  Plug 'Shougo/deoplete.nvim'
+  " If opening buffer, search first in opened windows.
+  set switchbuf=usetab
 
-    let g:deoplete#enable_at_startup = 1
-    let g:deoplete#file#enable_buffer_path = 1
-    if !exists('g:deoplete#omni#input_patterns')
-      let g:deoplete#omni#input_patterns = {}
+  " Hide buffers instead of asking if to save them.
+  set hidden
+
+  " Wrap lines by default
+  set wrap linebreak
+  set showbreak=" "
+
+  " Allow easy navigation between wrapped lines.
+  vmap j gj
+  vmap k gk
+  nmap j gj
+  nmap k gk
+
+  nnoremap <CR> G
+  nnoremap <BS> gg
+
+  " For autocompletion, complete as much as you can.
+  set wildmode=longest,full
+
+  " Show line numbers on the sidebar.
+  set number
+
+  " Disable any annoying beeps on errors.
+  set noerrorbells
+  set visualbell
+
+  " Don't parse modelines (google "vim modeline vulnerability").
+  set nomodeline
+
+  " Do not fold by default. But if, do it up to 3 levels.
+  set foldmethod=indent
+  set foldnestmax=3
+  set nofoldenable
+
+  " Enable mouse for scrolling and window resizing.
+  set mouse=a
+
+  " Disable swap to prevent annoying messages.
+  set noswapfile
+
+  " Enable search highlighting.
+  set hlsearch
+
+  " Show mode in statusbar, not separately.
+  set noshowmode
+
+  " Ignore case when searching.
+  set ignorecase
+
+  " Don't ignore case when search has capital letter
+  " (although also don't ignore case by default).
+  set smartcase
+
+  " Use dash as word separator.
+  set iskeyword+=-
+
+  " Auto center on matched string.
+  noremap n nzz
+  noremap N Nzz
+
+  " Set window title by default.
+  set title
+
+  " Always focus on split window.
+  set splitright
+  set splitbelow
+
+  " copy/paste to system clipboard
+  set clipboard=unnamed
+  vnoremap <silent> y y`]
+  vnoremap <silent> p p`]
+  nnoremap <silent> p p`]
+
+  set colorcolumn=80,120
+
+  nnoremap H ^
+  nnoremap L $
+
+  nnoremap <Leader>w :w<CR>
+  " closes current buffer, but doesn't close the split that it is in
+  nnoremap <Leader>q :bp\|bd #<CR>
+
+  " buffer fun
+  nnoremap gh :bp<CR>
+  nnoremap gl :bn<CR>
+  nnoremap <Leader>i :b
+
+  " show invisible charactars
+  set list
+
+  " Allow saving of files as sudo when I forgot to start vim using sudo.
+  cmap w!! w !sudo tee > /dev/null %
+
+  " mor speed
+  set lazyredraw
+  set ttyfast
+
+"" Saved Macros
+  " select function
+  let @c = 'vf{%'
+
+"" Platform Specific
+  if has("unix")
+    let s:uname = system("uname -s")
+
+    " OS X
+    if s:uname == "Darwin\n"
+      map <Leader>, :!gitup<CR><CR>
     endif
-    " let g:deoplete#disable_auto_complete = 1
-    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-    " omnifuncs
-    augroup omnifuncs
-      autocmd!
-      autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-      autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-      autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-      autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-      autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    augroup end
+    " Linux
+    if s:uname == "Linux"
+      map <Leader>, :!meld<CR><CR>
+    endif
 
-    " Tab autocomplete
-    inoremap <silent><expr> <Leader><Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+  endif
 
-endif
+"" Neovim
+  if has('nvim')
 
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+    " Terminal Keymappings
+    nnoremap <a-j> <c-w>j
+    nnoremap <a-k> <c-w>k
+    nnoremap <a-h> <c-w>h
+    nnoremap <a-l> <c-w>l
+    vnoremap <a-j> <c-\><c-n><c-w>j
+    vnoremap <a-k> <c-\><c-n><c-w>k
+    vnoremap <a-h> <c-\><c-n><c-w>h
+    vnoremap <a-l> <c-\><c-n><c-w>l
+    inoremap <a-j> <c-\><c-n><c-w>j
+    inoremap <a-k> <c-\><c-n><c-w>k
+    inoremap <a-h> <c-\><c-n><c-w>h
+    inoremap <a-l> <c-\><c-n><c-w>l
+    cnoremap <a-j> <c-\><c-n><c-w>j
+    cnoremap <a-k> <c-\><c-n><c-w>k
+    cnoremap <a-h> <c-\><c-n><c-w>h
+    cnoremap <a-l> <c-\><c-n><c-w>l
+    tnoremap <Leader><Esc> <c-\><c-n>
+    tnoremap <a-j> <c-\><c-n><c-w>j
+    tnoremap <a-k> <c-\><c-n><c-w>k
+    tnoremap <a-h> <c-\><c-n><c-w>h
+    tnoremap <a-l> <c-\><c-n><c-w>l
+    au WinEnter *pid:* call feedkeys('i')
+  endif
 
-  let g:tern_show_argument_hints = 'on_hold'
-  let g:tern_show_signature_in_pum = 1
-  autocmd FileType javascript nnoremap <silent> <buffer> tf :TernDef<CR>
-  autocmd FileType javascript nnoremap <silent> <buffer> tr :TernRefs<CR>
-  autocmd FileType javascript nnoremap <silent> <buffer> tR :TernRename<CR>
-  autocmd FileType javascript setlocal omnifunc=tern#Complete
+"" Plugins
+  call plug#begin()
 
-" Linting
-Plug 'scrooloose/syntastic'
+  " Language support
+  Plug 'sheerun/vim-polyglot'
+  Plug 'fatih/vim-go'
 
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
+  " Fuzzy file search
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+  Plug 'junegunn/fzf.vim'
 
-  let g:syntastic_javascript_checkers = ['standard']
-  let g:syntastic_php_checkers = ['php']
-  let g:syntastic_jade_checkers = ['jade_lint']
-  let g:syntastic_python_checkers = ['python']
+    map <c-x><c-k> <Plug>(fzf-complete-word)
+    imap <c-x><c-j> <Plug>(fzf-complete-file-ag)
+    imap <c-x><c-l> <Plug>(fzf-complete-line)
 
-  let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+    nnoremap <silent> <C-  map <c-x><c-k> <Plug>(fzf-complete-word)
+    imap <c-x><c-j> <Plug>(fzf-complete-file-ag)
+    imap <c-x><c-l> <Plug>(fzf-complete-line)
 
-  let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-  let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+    nnoremap <silent> <Leader><Enter> :Buffers<CR>p> :Files<CR>
+    nnoremap <silent> <Leader><Enter> :Buffers<CR>
 
-  let g:syntastic_aggregate_errors = 1
-  let g:syntastic_check_on_open = 1
-  let g:syntastic_check_on_wq = 0
+    " Use FZF to fuzzy find tags
+    command! -bar Tags if !empty(tagfiles()) | call fzf#run({
+    \   'source': "sed '/^\\!/d;s/\t.*//' " . join(tagfiles()) . ' | uniq',
+    \   'sink':   'tag',
+    \ })
+    nnoremap <leader>. :Tags<cr>
+    nnoremap <Leader>o :FZF<CR>
 
-Plug 'benjaminparnell/vim-switchblade'
+  " Find in project
+  Plug 'rking/ag.vim'
 
-" Git integration
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+    nnoremap \ :Ag!<SPACE>
 
-  nnoremap <Leader>b :Gblame<CR>
+  " Better nodejs support
+  Plug 'moll/vim-node', { 'for': 'javascript' }
 
-" JSON mode
-Plug 'elzr/vim-json', { 'for': 'json' }
+  " File navigator
+  Plug 'scrooloose/nerdtree'
+  Plug 'jistr/vim-nerdtree-tabs'
 
-" Multiple cursors
-Plug 'terryma/vim-multiple-cursors'
+    let NERDTreeShowHidden=1
+    silent! nmap <Tab><Tab> :NERDTreeToggle<CR>
+    silent! nmap <Leader>f :NERDTreeFind<CR>
 
-" Start page
-Plug 'mhinz/vim-startify'
+  " Comment code
+  Plug 'scrooloose/nerdcommenter'
 
-  let g:startify_custom_header_quotes = [['Hare Krishna!'],['Jaya Prabhupada!']]
+  " wildignore gitignored files
+  Plug 'vim-scripts/gitignore'
 
-" Markdown preview
-Plug 'shime/vim-livedown', { 'for': 'markdown' }
+  " Strip whitespace etc.
+  Plug 'editorconfig/editorconfig-vim'
 
-" Show indent guides
-Plug 'nathanaelkane/vim-indent-guides'
+  " Better PHP syntax
+  Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 
-" Move lines
-Plug 'matze/vim-move'
+  " Linting
+  if has('nvim')
+    Plug 'neomake/neomake'
+
+      let g:neomake_javascript_enabled_makers = ['standard']
+      autocmd BufWinEnter,InsertLeave,TextChanged * update | Neomake
+
+    Plug 'balaclark/vim-switchblade'
+  endif
+
+  " Autocomplete
+  if has('nvim')
+    " https://gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
+    Plug 'Shougo/deoplete.nvim'
+    "Plug 'zchee/deoplete-go'
+    "Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+
+      let g:deoplete#enable_at_startup = 1
+      let g:deoplete#file#enable_buffer_path = 1
+      if !exists('g:deoplete#omni#input_patterns')
+        let g:deoplete#omni#input_patterns = {}
+      endif
+      " let g:deoplete#disable_auto_complete = 1
+      autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+      " omnifuncs
+      augroup omnifuncs
+        autocmd!
+        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+      augroup end
+
+      " Tab autocomplete
+      inoremap <silent><expr> <Leader><Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+  endif
+
+  " JS code intell
+  Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
+
+    let g:tern_show_argument_hints = 'on_hold'
+    let g:tern_show_signature_in_pum = 1
+    autocmd FileType javascript nnoremap <silent> <buffer> tf :TernDef<CR>
+    autocmd FileType javascript nnoremap <silent> <buffer> tr :TernRefs<CR>
+    autocmd FileType javascript nnoremap <silent> <buffer> tR :TernRename<CR>
+    autocmd FileType javascript setlocal omnifunc=tern#Complete
+
+  " Git integration
+  Plug 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-fugitive'
+
+    nnoremap <Leader>b :Gblame<CR>
+
+  " Multiple cursors
+  Plug 'terryma/vim-multiple-cursors'
+
+  " Move lines
+  Plug 'matze/vim-move'
 
   let g:move_key_modifier = 'C'
 
-" Swap panes
-Plug 'wesQ3/vim-windowswap'
+  " Show buffers as tabs
+  Plug 'ap/vim-buftabline'
+
+  let g:buftabline_numbers = 1
+
+  " Copy current file path
+  Plug 'bag-man/copypath.vim'
+
+    nnoremap cp :CopyRelativePath<CR>
+
+  " :e file:108
+  Plug 'kopischke/vim-fetch'
+
+  " Faster keyboard nav within files
+  Plug 'easymotion/vim-easymotion'
+
+    "let g:EasyMotion_do_mapping = 0
+    let g:EasyMotion_smartcase = 1
+
+    map <Leader>l <Plug>(easymotion-lineforward)
+    map <Leader>j <Plug>(easymotion-j)
+    map <Leader>k <Plug>(easymotion-k)
+    map <Leader>h <Plug>(easymotion-linebackward)
+
+    " search whole file
+    nmap s <Plug>(easymotion-w)
+
+  " cd to the project root
+  Plug 'airblade/vim-rooter'
+
+  " colorscheme
+  Plug 'NLKNguyen/papercolor-theme'
+
+  " Really nice prompt
+  Plug 'itchyny/lightline.vim'
+
+    let g:lightline = {
+        \ 'colorscheme': 'PaperColor',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+        \ },
+        \ 'component': {
+        \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
+        \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+        \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+        \ },
+        \ 'component_visible_condition': {
+        \   'readonly': '(&filetype!="help"&& &readonly)',
+        \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+        \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+        \ },
+        \ 'separator': { 'left': '', 'right': '' },
+        \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
+
+  call plug#end()
+
+"" Set colorscheme
+  set background=dark
+  colorscheme PaperColor
 
-" Show buffers as tabs
-"Plug 'ap/vim-buftabline'
-
-"  let g:buftabline_numbers = 1
-"  "let g:buftabline_indicators = 1
-
-" Go to file in terminal / finder
-Plug 'justinmk/vim-gtfo'
-
-" Copy current file path
-Plug 'bag-man/copypath.vim'
-
-  nnoremap cp :CopyRelativePath<CR>
-
-" Close all buffers but the current one
-Plug 'vim-scripts/BufOnly.vim'
-
-  nnoremap go :BufOnly<CR>
-
-" Toggle booleans and dates with ctrl+a/x
-Plug 'can3p/incbool.vim'
-Plug 'tpope/vim-speeddating'
-
-" Color hex codes and color names
-Plug 'chrisbra/Colorizer'
-
-  let g:colorizer_auto_filetype='css,html,stylus,jade,less,sass'
-
-" :e file:108
-Plug 'kopischke/vim-fetch'
-
-" Edit your surroundings (e.g. change the surrounding double quotes to single)
-Plug 'tpope/vim-surround'
-
-" Add repeat support to more stuff
-Plug 'tpope/vim-repeat'
-
-" Detect spaces / tabs
-Plug 'tpope/vim-sleuth'
-
-" Autoload changes made outside vim (e.g. git)
-Plug 'tmux-plugins/vim-tmux-focus-events'
-
-" Faster keyboard nav within files
-Plug 'easymotion/vim-easymotion'
-
-  "let g:EasyMotion_do_mapping = 0
-  let g:EasyMotion_smartcase = 1
-
-  map <Leader>l <Plug>(easymotion-lineforward)
-  map <Leader>j <Plug>(easymotion-j)
-  map <Leader>k <Plug>(easymotion-k)
-  map <Leader>h <Plug>(easymotion-linebackward)
-
-  " search whole file
-  nmap s <Plug>(easymotion-w)
-
-" Manage TODOs in code
-Plug 'vim-scripts/TaskList.vim'
-
-  nmap <Leader>T <Plug>TaskList
-
-" CamelCase word motions
-Plug 'bkad/CamelCaseMotion'
-
-  map <silent> w <Plug>CamelCaseMotion_w
-  map <silent> b <Plug>CamelCaseMotion_b
-  map <silent> e <Plug>CamelCaseMotion_e
-  map <silent> ge <Plug>CamelCaseMotion_ge
-  sunmap w
-  sunmap b
-  sunmap e
-  sunmap ge
-
-" Better session management
-Plug 'tpope/vim-obsession'
-
-" cd to the project root
-Plug 'airblade/vim-rooter'
-
-" easy html
-Plug 'mattn/emmet-vim'
-
-  let g:user_emmet_install_global = 0
-  autocmd FileType html,php,css EmmetInstall
-
-" Colorschemes
-Plug 'junegunn/seoul256.vim'
-
-  let g:seoul256_background = 234
-  set t_ut= " makes this work in tmux
-
-Plug 'scwood/vim-hybrid'
-Plug 'michalbachowski/vim-wombat256mod'
-Plug 'NLKNguyen/papercolor-theme'
-
-" Golang
-Plug 'fatih/vim-go'
-
-call plug#end()
-
-" set colorscheme
-set background=dark
-colorscheme PaperColor
-
-set autoread
-
-vnoremap <silent> y y`]
-vnoremap <silent> p p`]
-nnoremap <silent> p p`]
-
-nnoremap <CR> G
-nnoremap <BS> gg
-nnoremap <Leader>w :w<CR>
-" closes current buffer, but doesn't close the split that it is in
-nnoremap <Leader>q :bp\|bd #<CR>
-nnoremap <Leader>s :wq<CR>
-nnoremap <Leader>v V
-nnoremap <Leader>g gf
-
-" easy way to copy the current mocha test into the next pending one
-nnoremap <silent> <Plug>TransposeCharacters {jf,vf{%y}jt)p
-\:call repeat#set("\<Plug>TransposeCharacters")<CR>
-nmap cf <Plug>TransposeCharacters
-
-"" Saved Macros
-
-" select function
-let @c = 'vf{%'
-
-nnoremap <Leader>tg :te tig status<CR>
-
-" Buffer fun
-
-" Move to the previous buffer
-nnoremap gh :bp<CR>
-" Move to the next buffer
-nnoremap gl :bn<CR>
-
-" Support resizing in tmux
-if exists('$TMUX') && !has('nvim')
-  set ttymouse=xterm2
-endif
-
-nnoremap H 0
-nnoremap L $
-
-nnoremap <Leader>i :b
-
-if !has('nvim')
-  set encoding=utf-8
-endif
-set colorcolumn=80,120
-set clipboard=unnamed
-
-" show invisibles
-set list
-
-" turn on ruler
-set noruler
-set nocursorline
-
-" For more reliable indenting and performance
-set foldmethod=indent
-set fillchars="fold: "
-
-" Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee > /dev/null %
-
-" ctrl+c to toggle highlight
-nnoremap <c-c> :noh<CR>
-
-" turn off markdown folding. literally what.
-let g:vim_markdown_folding_disabled=1
-
-" folding
-set foldmethod=indent
-set foldnestmax=10
-set nofoldenable
-set foldlevel=1
-
-" platform specific configs
-if has("unix")
-  let s:uname = system("uname -s")
-
-  " OS X
-  if s:uname == "Darwin\n"
-    map <Leader>, :!gitup<CR><CR>
-  endif
-
-  " Linux
-  if s:uname == "Linux"
-    map <Leader>, :!meld<CR><CR>
-  endif
-
-endif
-
-" mor speed
-if !has('nvim')
-  set lazyredraw
-  set ttyfast
-endif
-if has('nvim')
-  set noshowcmd
-endif
-
-"set relativenumber
-
-map Od <C-w>>
-map Oc <C-w><
-map Oa <C-w>+
-map Ob <C-w>-
-
-" 'zoom' split
-nnoremap <Leader>z :tab split<CR>
-nnoremap <Leader>zz :tabclose<CR>
-" tabsplit
-if has('nvim')
-  nnoremap <Leader>t :split<CR>:terminal<CR>
-endif
-
-" macvim / gvim options
-
-" no scrollbars
-set guioptions-=r
-set guioptions-=L
-
-" font
-set guifont=Inconsolata:h15
-
-" neovim terminal mappings
-nnoremap <a-j> <c-w>j
-nnoremap <a-k> <c-w>k
-nnoremap <a-h> <c-w>h
-nnoremap <a-l> <c-w>l
-vnoremap <a-j> <c-\><c-n><c-w>j
-vnoremap <a-k> <c-\><c-n><c-w>k
-vnoremap <a-h> <c-\><c-n><c-w>h
-vnoremap <a-l> <c-\><c-n><c-w>l
-inoremap <a-j> <c-\><c-n><c-w>j
-inoremap <a-k> <c-\><c-n><c-w>k
-inoremap <a-h> <c-\><c-n><c-w>h
-inoremap <a-l> <c-\><c-n><c-w>l
-cnoremap <a-j> <c-\><c-n><c-w>j
-cnoremap <a-k> <c-\><c-n><c-w>k
-cnoremap <a-h> <c-\><c-n><c-w>h
-cnoremap <a-l> <c-\><c-n><c-w>l
-if has('nvim')
-  tnoremap <Leader><Esc> <c-\><c-n>
-  tnoremap <a-j> <c-\><c-n><c-w>j
-  tnoremap <a-k> <c-\><c-n><c-w>k
-  tnoremap <a-h> <c-\><c-n><c-w>h
-  tnoremap <a-l> <c-\><c-n><c-w>l
-  au WinEnter *pid:* call feedkeys('i')
-endif
