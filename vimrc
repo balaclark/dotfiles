@@ -311,7 +311,7 @@
   if has('nvim')
     Plug 'neomake/neomake'
 
-      " make neomake warnings look like syntastic ones
+      " make neomake warnings look more like syntastic ones
       let g:neomake_error_sign = {
       \ 'text': '>>',
       \ 'texthl': 'ErrorMsg',
@@ -323,10 +323,11 @@
       \ }
 
       " lint as often as we can
-      autocmd BufWinEnter,InsertLeave,TextChanged * update | Neomake
+      "autocmd BufWinEnter,InsertLeave,TextChanged,BufReadPre,FileReadPre * update | Neomake
+      autocmd! BufEnter,BufWritePost * Neomake
 
-      " default JS to standard (other defaults are handled within neomake)
       let g:neomake_javascript_enabled_makers = ['standard']
+      let g:neomake_html_enabled_makers = ['htmlhint']
 
     Plug 'balaclark/vim-switchblade'
   endif
@@ -420,6 +421,12 @@
   " Really nice prompt
   Plug 'itchyny/lightline.vim'
 
+  " Add '.' powers to plugins
+  Plug 'tpope/vim-repeat'
+
+  " Edit surrounding quotes, etc.
+  Plug 'tpope/vim-surround'
+
     let g:lightline = {
         \ 'colorscheme': 'PaperColor',
         \ 'active': {
@@ -438,6 +445,11 @@
         \ 'separator': { 'left': '', 'right': '' },
         \ 'subseparator': { 'left': '', 'right': '' }
       \ }
+
+  " Close all other buffers
+  Plug 'schickling/vim-bufonly'
+
+    nnoremap go :BufOnly<CR>
 
   call plug#end()
 
