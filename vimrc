@@ -191,6 +191,10 @@
   nnoremap gl :bn<CR>
   nnoremap <Leader>i :b
 
+  " 'zoom' current split
+  nnoremap <Leader>z :tabnew %<CR>
+  nnoremap <Leader>Z :tabclose<CR>
+
   " show invisible charactars
   set list
 
@@ -201,22 +205,33 @@
   set lazyredraw
   set ttyfast
 
+  nnoremap rp viwp
+  "nnoremap rp viw"_dp
+
 "" Saved Macros
   " select function
   let @c = 'vf{%'
 
 "" Platform Specific
+  if has("nvim")
+    map <Leader>, :te tig status<CR>
+  endif
+
   if has("unix")
     let s:uname = system("uname -s")
 
     " OS X
     if s:uname == "Darwin\n"
-      map <Leader>, :!gitup<CR><CR>
+      if !has("nvim")
+        map <Leader>, :!gitup<CR><CR>
+      endif
     endif
 
     " Linux
     if s:uname == "Linux"
-      map <Leader>, :!meld<CR><CR>
+      if !has("nvim")
+        map <Leader>, :!meld<CR><CR>
+      endif
     endif
 
   endif
@@ -299,7 +314,7 @@
   Plug 'scrooloose/nerdcommenter'
 
   " wildignore gitignored files
-  Plug 'vim-scripts/gitignore'
+  "Plug 'vim-scripts/gitignore'
 
   " Strip whitespace etc.
   Plug 'editorconfig/editorconfig-vim'
