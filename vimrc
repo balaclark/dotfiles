@@ -322,6 +322,9 @@
   " Better PHP syntax
   Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 
+  " node
+  Plug 'jaawerth/nrun.vim', { 'do': 'type npm && npm install --global npm-which' }
+
   " Linting
   if has('nvim')
     Plug 'neomake/neomake'
@@ -337,12 +340,12 @@
       \ 'texthl': 'MyWarningMsg',
       \ }
 
+      let g:neomake_javascript_enabled_makers = ['standard']
+      let g:neomake_html_enabled_makers = ['htmlhint']
+
       " lint as often as we can
       "autocmd BufWinEnter,InsertLeave,TextChanged,BufReadPre,FileReadPre * update | Neomake
       autocmd! BufEnter,BufWritePost * Neomake
-
-      let g:neomake_javascript_enabled_makers = ['standard']
-      let g:neomake_html_enabled_makers = ['htmlhint']
 
     Plug 'balaclark/vim-switchblade'
   endif
@@ -471,4 +474,10 @@
 "" Set colorscheme
   set background=dark
   colorscheme PaperColor
+
+" use linters from a project's node_modules when possible
+  let g:neomake_javascript_jshint_exe = nrun#Which('jshint')
+  let g:neomake_javascript_jscs_exe = nrun#Which('jscs')
+  let g:neomake_javascript_eslint_exe = nrun#Which('eslint')
+  let g:neomake_javascript_standard_exe = nrun#Which('standard')
 
