@@ -22,8 +22,11 @@
   set ttimeout
   set ttimeoutlen=100
 
-  " Enable highlighted case-insensitive incremential search.
+  " Enable case-insensitive incremential search.
   set incsearch
+
+  " Enable search highlighting.
+  set hlsearch
 
   " Use `Ctrl-L` to clear the highlighting of :set hlsearch.
   nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
@@ -143,9 +146,6 @@
 
   " Disable swap to prevent annoying messages.
   set noswapfile
-
-  " Enable search highlighting.
-  set hlsearch
 
   " Show mode in statusbar, not separately.
   set noshowmode
@@ -322,7 +322,7 @@
   " Better PHP syntax
   Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 
-  " node
+  " npm-which support in vim, used to configure vim to use locally installed linters
   Plug 'jaawerth/nrun.vim', { 'do': 'type npm && npm install --global npm-which' }
 
   " Linting
