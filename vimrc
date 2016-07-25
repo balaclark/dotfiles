@@ -313,6 +313,9 @@
   " Comment code
   Plug 'scrooloose/nerdcommenter'
 
+    " add space after comment char, e.g. // my comment
+    let NERDSpaceDelims=1
+
   " wildignore gitignored files
   "Plug 'vim-scripts/gitignore'
 
