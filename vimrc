@@ -434,7 +434,7 @@
     nmap s <Plug>(easymotion-w)
 
   " cd to the project root
-  Plug 'airblade/vim-rooter'
+  "Plug 'airblade/vim-rooter'
 
   " colorscheme
   Plug 'NLKNguyen/papercolor-theme'
