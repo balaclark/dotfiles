@@ -205,7 +205,7 @@
   set lazyredraw
   set ttyfast
 
-  nnoremap rp viwp
+  nnoremap rp viwpyiw
   "nnoremap rp viw"_dp
 
 "" Saved Macros
