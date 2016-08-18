@@ -279,11 +279,10 @@
     imap <c-x><c-j> <Plug>(fzf-complete-file-ag)
     imap <c-x><c-l> <Plug>(fzf-complete-line)
 
-    nnoremap <silent> <C-  map <c-x><c-k> <Plug>(fzf-complete-word)
-    imap <c-x><c-j> <Plug>(fzf-complete-file-ag)
-    imap <c-x><c-l> <Plug>(fzf-complete-line)
-
-    nnoremap <silent> <Leader><Enter> :Buffers<CR>p> :Files<CR>
+    nnoremap <silent> <Leader>o :Files<CR>
+    nnoremap <silent> <Leader>g :GFiles?<CR>
+    nnoremap <silent> <Leader>ag :Ag<CR>
+    nnoremap <silent> <Leader>* :Ag!<CR>
     nnoremap <silent> <Leader><Enter> :Buffers<CR>
 
     " Use FZF to fuzzy find tags
