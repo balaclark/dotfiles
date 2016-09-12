@@ -214,7 +214,7 @@
 
 "" Platform Specific
   if has("nvim")
-    map <Leader>, :te tig status<CR>
+    map <Leader>, :terminal tig status<CR>
   endif
 
   if has("unix")
@@ -470,6 +470,7 @@
   Plug 'schickling/vim-bufonly'
 
     nnoremap go :BufOnly<CR>
+    nnoremap goa :BufOnly<CR>:bd<CR>
 
   call plug#end()
 
