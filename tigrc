@@ -13,7 +13,7 @@ bind refs       M       !git merge --no-ff %(branch)
 bind refs       P       !hub pull-request
 bind tree       t       !find %(directory) -path ./node_modules -prune -o -name *%(prompt)*
 bind status     C       !git commit
-bind status     D       !rm %(file)
+bind status     D       !@?rm %(file)
 bind status     b       ?@git checkout "%(prompt Enter branch name: )"
 bind stash      P       ?git stash pop %(stash)
 bind stash      !       ?git stash drop %(stash)
