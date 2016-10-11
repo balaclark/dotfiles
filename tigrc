@@ -16,3 +16,4 @@ bind tree       t       !find %(directory) -path ./node_modules -prune -o -name 
 bind main       c       ?git checkout %(commit)
 bind main       Y       !@sh -c "echo -n %(commit) | xclip -selection c"
 bind generic    +       !git commit --amend
+bind status     D       !rm %(file)
