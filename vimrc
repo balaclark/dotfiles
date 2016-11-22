@@ -2,6 +2,13 @@
   let maplocalleader = ","
   let mapleader = "\<Space>"
 
+  " auto install vim plug when needed
+  if empty(glob("~/.config/nvim/autoload/plug.vim"))
+    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    auto VimEnter * PlugInstall
+  endif
+
   " Disable strange Vi defaults.
   set nocompatible
 

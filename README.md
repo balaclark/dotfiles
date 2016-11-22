@@ -6,13 +6,4 @@ Heavily inspired by [sheerun/dotfiles](https://github.com/sheerun/dotfiles) and 
 Setup
 -----
 
-* Install [vim-plug](https://github.com/junegunn/vim-plug)
 * `./bin/setup`
-
-Vim
----
-
-```sh
-vim
-:PlugInstall
-```
