@@ -53,6 +53,10 @@ export GOPATH=$HOME/dev/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
+export ANDROID_HOME=~/Library/Android/sdk
+export PATH=${PATH}:${ANDROID_HOME}/tools
+export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+
 # clock specific workflows (thanks to Ash)
 
 comms-deploy() {
