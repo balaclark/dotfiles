@@ -489,6 +489,9 @@
     nnoremap go :BufOnly<CR>
     nnoremap goa :BufOnly<CR>:bd<CR>
 
+  " auto close brackets
+  Plug 'rstacruz/vim-closer'
+
   call plug#end()
 
 "" Set colorscheme
