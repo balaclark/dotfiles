@@ -208,6 +208,16 @@
   nnoremap rp viwpyiw
   "nnoremap rp viw"_dp
 
+  " this is going to hurt...
+  nnoremap <Left> :echoe "Use h"<CR>
+  nnoremap <Right> :echoe "Use l"<CR>
+  nnoremap <Up> :echoe "Use k"<CR>
+  nnoremap <Down> :echoe "Use j"<CR>
+
+  " hopefully this will ease the pain...
+  inoremap jj <Esc>j
+  inoremap kk <Esc>k
+
 "" Saved Macros
   " select function
   let @c = 'vf{%'
@@ -408,7 +418,7 @@
   " Show buffers as tabs
   Plug 'ap/vim-buftabline'
 
-  let g:buftabline_numbers = 1
+  " let g:buftabline_numbers = 1
 
   " Copy current file path
   Plug 'bag-man/copypath.vim'
@@ -483,4 +493,3 @@
   let g:neomake_javascript_jscs_exe = nrun#Which('jscs')
   let g:neomake_javascript_eslint_exe = nrun#Which('eslint')
   let g:neomake_javascript_standard_exe = nrun#Which('standard')
-
