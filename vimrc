@@ -255,6 +255,11 @@
 
 "" Neovim
   if has('nvim')
+    " use true colours in the terminal
+    set termguicolors
+
+    " makes the cursor a pipe in insert-mode, and a block in normal-mode
+    :let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
     " Terminal Keymappings
     nnoremap <a-j> <c-w>j
