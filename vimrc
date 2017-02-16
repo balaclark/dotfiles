@@ -261,6 +261,9 @@
     " makes the cursor a pipe in insert-mode, and a block in normal-mode
     :let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+    " remove terminals from the buffer list
+    autocmd TermOpen * set nobuflisted
+
     " Terminal Keymappings
     nnoremap <a-j> <c-w>j
     nnoremap <a-k> <c-w>k
@@ -283,6 +286,8 @@
     tnoremap <a-k> <c-\><c-n><c-w>k
     tnoremap <a-h> <c-\><c-n><c-w>h
     tnoremap <a-l> <c-\><c-n><c-w>l
+
+    " automatically enter insert mode
     au WinEnter *pid:* call feedkeys('i')
   endif
 
@@ -458,9 +463,6 @@
   " cd to the project root
   "Plug 'airblade/vim-rooter'
 
-  " colorscheme
-  Plug 'NLKNguyen/papercolor-theme'
-
   " Really nice prompt
   Plug 'itchyny/lightline.vim'
 
@@ -497,6 +499,13 @@
 
   " auto close brackets
   Plug 'rstacruz/vim-closer'
+
+  " make gui only color schemes work in terminal
+  Plug 'godlygeek/csapprox'
+
+  " colorscheme
+  Plug 'NLKNguyen/papercolor-theme'
+  " Plug 'larsbs/vimterial'
 
   call plug#end()
 
