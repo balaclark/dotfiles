@@ -21,4 +21,5 @@ function clearUpTestDbs() {
     }
   })
 }
+
 clearUpTestDbs()
