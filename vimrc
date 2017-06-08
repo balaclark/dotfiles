@@ -232,6 +232,7 @@
 "" Platform Specific
   if has("nvim")
     map <Leader>, :terminal tig status<CR>
+    " map <Leader>/ :split|terminal<CR>
   endif
 
   if has("unix")
@@ -262,7 +263,7 @@
     :let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
     " remove terminals from the buffer list
-    autocmd TermOpen * set nobuflisted
+    " autocmd TermOpen * set nobuflisted
 
     " Terminal Keymappings
     nnoremap <a-j> <c-w>j
@@ -422,6 +423,7 @@
   " Git integration
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
 
     nnoremap <Leader>b :Gblame<CR>
 
@@ -503,15 +505,17 @@
   " make gui only color schemes work in terminal
   Plug 'godlygeek/csapprox'
 
-  " colorscheme
+  " colorschemes
   Plug 'NLKNguyen/papercolor-theme'
-  " Plug 'larsbs/vimterial'
+  Plug 'larsbs/vimterial'
+  Plug 'vim-scripts/moria'
+  Plug 'dracula/vim'
 
   call plug#end()
 
 "" Set colorscheme
   set background=dark
-  colorscheme PaperColor
+  colorscheme dracula
 
 " use linters from a project's node_modules when possible
   let g:neomake_javascript_jshint_exe = nrun#Which('jshint')
