@@ -225,6 +225,9 @@
   inoremap jj <Esc>j
   inoremap kk <Esc>k
 
+  " auto resize splits
+  autocmd VimResized * wincmd =
+
 "" Saved Macros
   " select function
   let @c = 'vf{%'
