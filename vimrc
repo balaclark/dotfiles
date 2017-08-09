@@ -505,6 +505,15 @@
   " auto close brackets
   Plug 'rstacruz/vim-closer'
 
+  Plug 'prettier/vim-prettier', {
+    \ 'do': 'yarn install',
+    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
+
+    let g:prettier#exec_cmd_async = 1
+    let g:prettier#config#semi = 'false'
+    let g:prettier#config#bracket_spacing = 'true'
+    let g:prettier#config#trailing_comma = 'none'
+
   " make gui only color schemes work in terminal
   Plug 'godlygeek/csapprox'
 
