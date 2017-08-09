@@ -495,6 +495,7 @@
     \ 'do': 'yarn install',
     \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
 
+    let g:prettier#autoformat = 0
     let g:prettier#exec_cmd_async = 1
     let g:prettier#config#semi = 'false'
     let g:prettier#config#bracket_spacing = 'true'
