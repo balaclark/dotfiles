@@ -29,6 +29,7 @@ export FZF_DEFAULT_COMMAND='ag -l -g ""'
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
+export PATH=./node_modules/.bin:$PATH
 export PATH=~/bin:$PATH
 
 RUBYGEMS="$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
@@ -56,6 +57,17 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export ANDROID_HOME=~/Library/Android/sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+
+export MYSQL_PATH=/usr/local/Cellar/mysql/5.7.18_1
+export PATH=$PATH:$MYSQL_PATH/bin
+
+# SSHConfigBase='~/.ssh/config.base'
+SSHConfigRepo='~/.ssh/SSHConfiguration/'
+SSHConfig='~/.ssh/config'
+alias updatesshconfig="cd $SSHConfigRepo && git pull && rm -f ~/.ssh/config && \
+  cat $SSHConfigRepo/ssh_config.d/* > $SSHConfig && \
+  cat $SSHConfigBase >> $SSHConfig && cd ~\
+"
 
 # clock specific workflows (thanks to Ash)
 
@@ -85,6 +97,7 @@ title
 # file sharing via https://transfer.sh/
 transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
 tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
+
 source /usr/local/etc/bash_completion.d/password-store
 
 mo () {
