@@ -358,31 +358,17 @@
   " npm-which support in vim, used to configure vim to use locally installed linters
   Plug 'jaawerth/nrun.vim', { 'do': 'type npm && npm install --global npm-which' }
 
-  " Linting
-  if has('nvim')
-    Plug 'neomake/neomake'
+  Plug 'w0rp/ale'
 
-      " make neomake warnings look more like syntastic ones
-      let g:neomake_error_sign = {
-      \ 'text': '>>',
-      \ 'texthl': 'ErrorMsg',
-      \ }
-      hi MyWarningMsg ctermbg=3 ctermfg=0
-      let g:neomake_warning_sign = {
-      \ 'text': '>>',
-      \ 'texthl': 'MyWarningMsg',
-      \ }
+    nmap <silent> <S-k> <Plug>(ale_previous_wrap)
+    nmap <silent> <S-j> <Plug>(ale_next_wrap)
 
-      let g:neomake_javascript_enabled_makers = ['standard']
-      let g:neomake_jsx_enabled_makers = ['eslint']
-      let g:neomake_html_enabled_makers = ['htmlhint']
-
-      " lint as often as we can
-      "autocmd BufWinEnter,InsertLeave,TextChanged,BufReadPre,FileReadPre * update | Neomake
-      autocmd! BufEnter,BufWritePost * Neomake
-
-    Plug 'balaclark/vim-switchblade'
-  endif
+    let g:ale_linters = {
+    \  'javascript': [ 'eslint' ],
+    \  'stylus': [ 'stylint' ],
+    \  'pug': [ 'pug-lint' ],
+    \  'html': [ 'htmlhint' ]
+    \}
 
   " Autocomplete
   if has('nvim')
@@ -533,7 +519,7 @@
   colorscheme dracula
 
 " use linters from a project's node_modules when possible
-  let g:neomake_javascript_jshint_exe = nrun#Which('jshint')
-  let g:neomake_javascript_jscs_exe = nrun#Which('jscs')
-  let g:neomake_javascript_eslint_exe = nrun#Which('eslint')
-  let g:neomake_javascript_standard_exe = nrun#Which('standard')
+  let g:ale_javascript_jshint_executable = nrun#Which('jshint')
+  let g:ale_javascript_jscs_executable = nrun#Which('jscs')
+  let g:ale_javascript_eslint_executable = nrun#Which('eslint')
+  let g:ale_javascript_standard_executable = nrun#Which('standard')
