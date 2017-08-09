@@ -508,6 +508,9 @@
   " make gui only color schemes work in terminal
   Plug 'godlygeek/csapprox'
 
+  " fancy case-insensitive replace (and more)
+  Plug 'tpope/tpope-vim-abolish'
+
   " colorschemes
   Plug 'NLKNguyen/papercolor-theme'
   Plug 'larsbs/vimterial'
