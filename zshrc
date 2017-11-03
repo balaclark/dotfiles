@@ -47,7 +47,7 @@ export PATH="$NPM_PACKAGES/bin:$PATH"
 unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
-export EDITOR=vim
+export EDITOR=nvim
 
 mkdir $HOME/dev/go
 export GOPATH=$HOME/dev/go
@@ -60,6 +60,12 @@ export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 export MYSQL_PATH=/usr/local/Cellar/mysql/5.7.18_1
 export PATH=$PATH:$MYSQL_PATH/bin
+
+# basher
+export PATH="$HOME/.basher/bin:$PATH"
+eval "$(basher init -)"
+
+export PATH=$PATH:~/.mongodb/versions/mongodb-current/bin
 
 # SSHConfigBase='~/.ssh/config.base'
 SSHConfigRepo='~/.ssh/SSHConfiguration/'

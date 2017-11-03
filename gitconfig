@@ -6,7 +6,7 @@
 	followTags = true
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = vim
+	editor = nvim
 	autocrlf = input
 [credential]
 	helper = osxkeychain
