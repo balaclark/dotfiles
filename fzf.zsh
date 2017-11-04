@@ -1,20 +1,14 @@
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */Users/bala/.fzf/bin* ]]; then
-  export PATH="$PATH:/Users/bala/.fzf/bin"
-fi
-
-# Man path
-# --------
-if [[ ! "$MANPATH" == */Users/bala/.fzf/man* && -d "/Users/bala/.fzf/man" ]]; then
-  export MANPATH="$MANPATH:/Users/bala/.fzf/man"
+if [[ ! "$PATH" == */Users/balac/.fzf/bin* ]]; then
+  export PATH="$PATH:/Users/balac/.fzf/bin"
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/Users/bala/.fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "/Users/balac/.fzf/shell/completion.zsh" 2> /dev/null
 
 # Key bindings
 # ------------
-source "/Users/bala/.fzf/shell/key-bindings.zsh"
+source "/Users/balac/.fzf/shell/key-bindings.zsh"
 
