@@ -46,6 +46,9 @@ link_dotfiles() {
     ln -sf "${file#$HOME/}" ".$base"
     e_success "$base"
   done
+
+  ln -sf "$DOTHOME/init.vim" "$HOME/.config/nvim/init.vim"
+  e_success ".config/nvim/init.vim"
 }
 
 print_messages() {
