@@ -234,27 +234,8 @@
 
 "" Platform Specific
   if has("nvim")
-    map <Leader>, :terminal tig status<CR>
+    map <Leader>, :tabnew<bar>terminal tig status<CR>
     " map <Leader>/ :split|terminal<CR>
-  endif
-
-  if has("unix")
-    let s:uname = system("uname -s")
-
-    " OS X
-    if s:uname == "Darwin\n"
-      if !has("nvim")
-        map <Leader>, :!gitup<CR><CR>
-      endif
-    endif
-
-    " Linux
-    if s:uname == "Linux"
-      if !has("nvim")
-        map <Leader>, :!meld<CR><CR>
-      endif
-    endif
-
   endif
 
 "" Neovim
