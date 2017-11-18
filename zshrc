@@ -109,3 +109,7 @@ tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | s
 mo () {
   mongo $(mongo --quiet --eval 'db.getMongo().getDBNames().join("\n")' | grep -v '^test' | sort | fzf --query=$1 --preview="mongo --quiet --eval 'JSON.stringify(db.stats())' {}")
 }
+
+savers-logs-staging () {
+  { ssh nuk-savers-production-node-01 'journalctl -o cat -fu node-nuk-savers-staging-*' & ssh nuk-savers-production-node-02 'journalctl -o cat -fu node-nuk-savers-staging-*' & ssh nuk-savers-production-node-03 'journalctl -o cat -fu node-nuk-savers-staging-*' } | bunyan
+}
