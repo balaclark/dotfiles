@@ -201,6 +201,7 @@
   " 'zoom' current split
   nnoremap <Leader>z :tabnew %<CR>
   nnoremap <Leader>Z :tabclose<CR>
+  nnoremap <Leader>t :tabnext<CR>
 
   " show invisible charactars
   set list
