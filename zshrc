@@ -113,3 +113,7 @@ mo () {
 savers-logs-staging () {
   { ssh nuk-savers-production-node-01 'journalctl -o cat -fu node-nuk-savers-staging-*' & ssh nuk-savers-production-node-02 'journalctl -o cat -fu node-nuk-savers-staging-*' & ssh nuk-savers-production-node-03 'journalctl -o cat -fu node-nuk-savers-staging-*' } | bunyan
 }
+
+savers-logs-production () {
+  { ssh nuk-savers-production-node-01 'journalctl -o cat -fu node-nuk-savers-production-*' & ssh nuk-savers-production-node-02 'journalctl -o cat -fu node-nuk-savers-production-*' & ssh nuk-savers-production-node-03 'journalctl -o cat -fu node-nuk-savers-production-*' } | bunyan
+}
