@@ -294,7 +294,6 @@
 
     nnoremap <silent> <Leader>o :Files<CR>
     nnoremap <silent> <Leader>g :GFiles?<CR>
-    nnoremap <silent> <Leader>ag :Ag<CR>
     nnoremap <silent> <Leader>* :Ag!<CR>
     nnoremap <silent> <Leader><Enter> :Buffers<CR>
 
@@ -379,6 +378,26 @@
 
       " Tab autocomplete
       inoremap <silent><expr> <Leader><Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+
+
+      " Disable Deoplete when selecting multiple cursors starts (fixes "<Plug>_"
+      " issue)
+      function! Multiple_cursors_before()
+          if exists('*deoplete#disable')
+              exe 'call deoplete#disable()'
+          elseif exists(':NeoCompleteLock') == 2
+              exe 'NeoCompleteLock'
+          endif
+      endfunction
+
+      " Enable Deoplete when selecting multiple cursors ends
+      function! Multiple_cursors_after()
+          if exists('*deoplete#enable')
+              exe 'call deoplete#enable()'
+          elseif exists(':NeoCompleteUnlock') == 2
+              exe 'NeoCompleteUnlock'
+          endif
+      endfunction
   endif
 
   " JS code intell
