@@ -57,6 +57,8 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export ANDROID_HOME=~/Library/Android/sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+export PATH=${PATH}:${ANDROID_HOME}/emulator
+alias emulator=${ANDROID_HOME}/tools/emulator
 
 export MYSQL_PATH=/usr/local/Cellar/mysql/5.7.18_1
 export PATH=$PATH:$MYSQL_PATH/bin
@@ -111,9 +113,9 @@ mo () {
 }
 
 savers-logs-staging () {
-  { ssh nuk-savers-production-node-01 'journalctl -o cat -fu node-nuk-savers-staging-*' & ssh nuk-savers-production-node-02 'journalctl -o cat -fu node-nuk-savers-staging-*' & ssh nuk-savers-production-node-03 'journalctl -o cat -fu node-nuk-savers-staging-*' } | bunyan
+  { ssh nuk-savers-production-node-01 'sudo journalctl -o cat -fu node-nuk-savers-staging-*' & ssh nuk-savers-production-node-02 'sudo journalctl -o cat -fu node-nuk-savers-staging-*' & ssh nuk-savers-production-node-03 'sudo journalctl -o cat -fu node-nuk-savers-staging-*' } | bunyan
 }
 
 savers-logs-production () {
-  { ssh nuk-savers-production-node-01 'journalctl -o cat -fu node-nuk-savers-production-*' & ssh nuk-savers-production-node-02 'journalctl -o cat -fu node-nuk-savers-production-*' & ssh nuk-savers-production-node-03 'journalctl -o cat -fu node-nuk-savers-production-*' } | bunyan
+  { ssh nuk-savers-production-node-01 'sudo journalctl -o cat -fu node-nuk-savers-production-*' & ssh nuk-savers-production-node-02 'sudo journalctl -o cat -fu node-nuk-savers-production-*' & ssh nuk-savers-production-node-03 'sudo journalctl -o cat -fu node-nuk-savers-production-*' } | bunyan
 }
