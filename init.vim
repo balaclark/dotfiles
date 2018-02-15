@@ -467,7 +467,7 @@
     let g:lightline = {
         \ 'colorscheme': 'PaperColor',
         \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'relativepath', 'modified' ] ]
         \ },
         \ 'component': {
         \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
