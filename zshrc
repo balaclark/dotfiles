@@ -119,3 +119,7 @@ savers-logs-staging () {
 savers-logs-production () {
   { ssh nuk-savers-production-node-01 'sudo journalctl -o cat -fu node-nuk-savers-production-*' & ssh nuk-savers-production-node-02 'sudo journalctl -o cat -fu node-nuk-savers-production-*' & ssh nuk-savers-production-node-03 'sudo journalctl -o cat -fu node-nuk-savers-production-*' } | bunyan
 }
+
+# tabtab source for yarn package
+# uninstall by removing these lines or running `tabtab uninstall yarn`
+[[ -f /Users/balac/.config/yarn/global/node_modules/tabtab/.completions/yarn.zsh ]] && . /Users/balac/.config/yarn/global/node_modules/tabtab/.completions/yarn.zsh
