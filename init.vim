@@ -345,7 +345,7 @@
     nmap <silent> <S-j> <Plug>(ale_next_wrap)
 
     let g:ale_linters = {
-    \  'javascript': [ 'eslint' ],
+    \  'javascript': [ 'eslint', 'standard' ],
     \  'stylus': [ 'stylint' ],
     \  'pug': [ 'pug-lint' ],
     \  'html': [ 'htmlhint' ]
@@ -383,20 +383,11 @@
       " Disable Deoplete when selecting multiple cursors starts (fixes "<Plug>_"
       " issue)
       function! Multiple_cursors_before()
-          if exists('*deoplete#disable')
-              exe 'call deoplete#disable()'
-          elseif exists(':NeoCompleteLock') == 2
-              exe 'NeoCompleteLock'
-          endif
+        let b:deoplete_disable_auto_complete = 1
       endfunction
 
-      " Enable Deoplete when selecting multiple cursors ends
       function! Multiple_cursors_after()
-          if exists('*deoplete#enable')
-              exe 'call deoplete#enable()'
-          elseif exists(':NeoCompleteUnlock') == 2
-              exe 'NeoCompleteUnlock'
-          endif
+        let b:deoplete_disable_auto_complete = 0
       endfunction
   endif
 
@@ -437,23 +428,6 @@
 
   " :e file:108
   Plug 'kopischke/vim-fetch'
-
-  " Faster keyboard nav within files
-  Plug 'easymotion/vim-easymotion'
-
-    "let g:EasyMotion_do_mapping = 0
-    let g:EasyMotion_smartcase = 1
-
-    map <Leader>l <Plug>(easymotion-lineforward)
-    map <Leader>j <Plug>(easymotion-j)
-    map <Leader>k <Plug>(easymotion-k)
-    map <Leader>h <Plug>(easymotion-linebackward)
-
-    " search whole file
-    nmap s <Plug>(easymotion-w)
-
-  " cd to the project root
-  "Plug 'airblade/vim-rooter'
 
   " Really nice prompt
   Plug 'itchyny/lightline.vim'
