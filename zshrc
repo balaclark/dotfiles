@@ -20,6 +20,8 @@ source "${ZDOTDIR:-$HOME}/.aliases"
 #eval `ssh-agent -s`
 #ssh-add
 
+eval $(thefuck --alias --enable-experimental-instant-mode)
+
 ulimit -n 10000
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

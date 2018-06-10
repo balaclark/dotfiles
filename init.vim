@@ -487,12 +487,13 @@
   Plug 'larsbs/vimterial'
   Plug 'vim-scripts/moria'
   Plug 'dracula/vim'
+  Plug 'bluz71/vim-moonfly-colors'
 
   call plug#end()
 
 "" Set colorscheme
   set background=dark
-  colorscheme dracula
+  colorscheme moonfly
 
 " use linters from a project's node_modules when possible
   let g:ale_javascript_jshint_executable = nrun#Which('jshint')
