@@ -46,3 +46,7 @@ alias ts='tig status'
 
 alias weather='curl http://wttr.in/watford'
 alias moon='curl http://wttr.in/Moon'
+
+# zsh no-autocorrect
+alias cap='nocorrect cap '
+alias jest='nocorrect jest '

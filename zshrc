@@ -15,7 +15,9 @@ fi
 bindkey '5D' emacs-backward-word
 bindkey '5C' emacs-forward-word
 
-source "${ZDOTDIR:-$HOME}/.aliases"
+if [ -e "${ZDOTDIR:-$HOME}/.aliases" ]; then
+  source "${ZDOTDIR:-$HOME}/.aliases"
+fi
 
 #eval `ssh-agent -s`
 #ssh-add
@@ -51,10 +53,10 @@ export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
 export EDITOR=nvim
 
-mkdir $HOME/dev/go
-export GOPATH=$HOME/dev/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
+# mkdir $HOME/dev/go
+# export GOPATH=$HOME/dev/go
+# export PATH=$PATH:$GOPATH/bin
+# export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
 export ANDROID_HOME=~/Library/Android/sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
