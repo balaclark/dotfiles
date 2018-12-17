@@ -35,9 +35,6 @@
   " Enable search highlighting.
   set hlsearch
 
-  " Use `Ctrl-L` to clear the highlighting of :set hlsearch.
-  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
-
   " Always show window statuses, even if there's only one.
   set laststatus=2
 
@@ -235,6 +232,7 @@
 
 "" Platform Specific
   if has("nvim")
+    " map <Leader>, :tabnew<bar>terminal lazygit<CR>
     map <Leader>, :tabnew<bar>terminal tig status<CR>
     " map <Leader>/ :split|terminal<CR>
   endif
@@ -411,6 +409,10 @@
   " Multiple cursors
   Plug 'terryma/vim-multiple-cursors'
 
+  " Use `Ctrl-L` to clear the highlighting of :set hlsearch.
+  " (needs to come above vim-move)
+  nnoremap <silent> <C-l> :nohlsearch<CR>
+
   " Move lines
   Plug 'matze/vim-move'
 
@@ -468,13 +470,12 @@
 
   Plug 'prettier/vim-prettier', {
     \ 'do': 'yarn install',
-    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
+    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 
-    let g:prettier#autoformat = 0
     let g:prettier#exec_cmd_async = 1
-    let g:prettier#config#semi = 'false'
-    let g:prettier#config#bracket_spacing = 'true'
-    let g:prettier#config#trailing_comma = 'none'
+
+    " autocmd BufWritePre,TextChanged,InsertLeave *.js* PrettierAsync
+    autocmd BufWritePre *.js* PrettierAsync
 
   " make gui only color schemes work in terminal
   Plug 'godlygeek/csapprox'
