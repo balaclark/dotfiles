@@ -35,7 +35,10 @@ zstyle ':prezto:load' pmodule \
   'prompt' \
   'git' \
   'history-substring-search' \
-  'homebrew'
+  'homebrew' \
+  'archive' \
+  'autosuggestions' \
+  'osx'
 
 #
 # Editor
