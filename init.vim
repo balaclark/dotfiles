@@ -361,6 +361,8 @@
       " let g:deoplete#disable_auto_complete = 1
       autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
+    Plug 'Shougo/neoinclude.vim'
+
     Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
       let g:deoplete#sources#ternjs#types = 1
       let g:deoplete#sources#ternjs#docs = 1
@@ -397,16 +399,6 @@
         let b:deoplete_disable_auto_complete = 0
       endfunction
   endif
-
-  " JS code intell
-  "Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
-
-  " let g:tern_show_argument_hints = 'on_hold'
-  " let g:tern_show_signature_in_pum = 1
-  " autocmd FileType javascript nnoremap <silent> <buffer> tf :TernDef<CR>
-  " autocmd FileType javascript nnoremap <silent> <buffer> tr :TernRefs<CR>
-  " autocmd FileType javascript nnoremap <silent> <buffer> tR :TernRename<CR>
-  " autocmd FileType javascript setlocal omnifunc=tern#Complete
 
   " Git integration
   Plug 'airblade/vim-gitgutter'
