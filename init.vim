@@ -353,6 +353,14 @@
   if has('nvim')
     " https://gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+      let g:deoplete#enable_at_startup = 1
+      let g:deoplete#file#enable_buffer_path = 1
+      if !exists('g:deoplete#omni#input_patterns')
+        let g:deoplete#omni#input_patterns = {}
+      endif
+      " let g:deoplete#disable_auto_complete = 1
+      autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
     Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
       let g:deoplete#sources#ternjs#types = 1
       let g:deoplete#sources#ternjs#docs = 1
@@ -364,14 +372,6 @@
       \ ]
     "Plug 'zchee/deoplete-go'
     "Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
-
-      let g:deoplete#enable_at_startup = 1
-      let g:deoplete#file#enable_buffer_path = 1
-      if !exists('g:deoplete#omni#input_patterns')
-        let g:deoplete#omni#input_patterns = {}
-      endif
-      " let g:deoplete#disable_auto_complete = 1
-      autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
       " omnifuncs
       augroup omnifuncs
