@@ -372,6 +372,9 @@
       \ 'vue',
       \ '...'
       \ ]
+
+    Plug 'fszymanski/deoplete-emoji'
+
     "Plug 'zchee/deoplete-go'
     "Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 
