@@ -81,6 +81,8 @@ alias updatesshconfig="cd $SSHConfigRepo && git pull && rm -f ~/.ssh/config && \
   cat $SSHConfigBase >> $SSHConfig && cd ~\
 "
 
+alias tgp="yarn test && git push"
+
 # clock specific workflows (thanks to Ash)
 
 comms-deploy() {
@@ -133,3 +135,5 @@ transfer() {
 }
 
 alias transfer=transfer
+
+# export LSCOLORS="Gxfxcxdxbxegedabagacad"
