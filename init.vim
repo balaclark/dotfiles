@@ -248,6 +248,9 @@
     " remove terminals from the buffer list
     " autocmd TermOpen * set nobuflisted
 
+    " Starts terminal in insert mode
+    autocmd TermOpen * startinsert
+
     " Terminal Keymappings
     nnoremap <a-j> <c-w>j
     nnoremap <a-k> <c-w>k
