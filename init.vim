@@ -401,6 +401,8 @@
       function! Multiple_cursors_after()
         let b:deoplete_disable_auto_complete = 0
       endfunction
+
+    Plug 'junegunn/vim-peekaboo'
   endif
 
   " Git integration
