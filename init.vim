@@ -251,6 +251,9 @@
     " Starts terminal in insert mode
     autocmd TermOpen * startinsert
 
+    " Quick exit terminal
+    tnoremap <Leader>q <c-\><c-n>:bd!<CR>
+
     " Terminal Keymappings
     nnoremap <a-j> <c-w>j
     nnoremap <a-k> <c-w>k
