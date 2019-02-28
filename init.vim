@@ -85,7 +85,7 @@
   let &undodir = expand(s:dir) . '/undo//'
   set undofile
 
-  " Allow color schemes to do bright colors without forcing bold.
+  " Allow color schemes to do birght colors without forcing bold.
   if &t_Co == 8 && $TERM !~# '^linux'
     set t_Co=16
   endif
@@ -310,9 +310,14 @@
     nnoremap <Leader>o :FZF<CR>
 
   " Find in project
-  Plug 'rking/ag.vim'
+  " Plug 'rking/ag.vim'
 
-    nnoremap \ :Ag!<SPACE>
+    " nnoremap \ :Ag!<SPACE>
+
+  Plug 'jremmen/vim-ripgrep'
+  Plug 'yssl/QFEnter'
+
+    nnoremap \ :Rg<SPACE>
 
   " Better nodejs support
   Plug 'moll/vim-node', { 'for': 'javascript' }
@@ -409,6 +414,7 @@
       endfunction
 
     Plug 'junegunn/vim-peekaboo'
+
   endif
 
   " Git integration
