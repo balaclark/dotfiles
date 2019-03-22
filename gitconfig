@@ -8,6 +8,7 @@
 	excludesfile = ~/.gitignore_global
 	editor = nvim
 	autocrlf = input
+	pager = diff-so-fancy | less --tabs=2 -RFX
 [credential]
 	helper = osxkeychain
 [alias]
@@ -17,3 +18,17 @@
 	br = branch
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	my = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=short --reverse --all --since=1.month.ago --author='Bala Clark'
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
