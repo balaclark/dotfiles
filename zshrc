@@ -1,10 +1,3 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -21,8 +14,6 @@ fi
 
 #eval `ssh-agent -s`
 #ssh-add
-
-eval $(thefuck --alias --enable-experimental-instant-mode)
 
 ulimit -n 10000
 
@@ -73,28 +64,7 @@ eval "$(basher init -)"
 
 export PATH=$PATH:~/.mongodb/versions/mongodb-current/bin
 
-# SSHConfigBase='~/.ssh/config.base'
-SSHConfigRepo='~/.ssh/SSHConfiguration/'
-SSHConfig='~/.ssh/config'
-alias updatesshconfig="cd $SSHConfigRepo && git pull && rm -f ~/.ssh/config && \
-  cat $SSHConfigRepo/ssh_config.d/* > $SSHConfig && \
-  cat $SSHConfigBase >> $SSHConfig && cd ~\
-"
-
 alias tgp="yarn test && git push"
-
-# clock specific workflows (thanks to Ash)
-
-comms-deploy() {
-  comms order $1 $2 prepare $3 && comms order $1 $2 install $3
-}
-
-copyDatabase() {
-  site=$(node -e "console.log(require('./config.json').$SRC.domain.replace('http://', ''))")
-  ssh -N -f -M -S /tmp/file-sock -L 27018:127.0.0.1:27017 $site
-  DBHOST=localhost:27018 pliers copyDatabase
-  ssh -S /tmp/file-sock -O exit $site
-}
 
 # setup terminal tab title
 function title {
@@ -108,22 +78,8 @@ function title {
 }
 title
 
-# file sharing via https://transfer.sh/
-transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
-tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
-
-# source /usr/local/etc/bash_completion.d/password-store
-
 mo () {
   mongo $(mongo --quiet --eval 'db.getMongo().getDBNames().join("\n")' | grep -v '^test' | sort | fzf --query=$1 --preview="mongo --quiet --eval 'JSON.stringify(db.stats())' {}")
-}
-
-savers-logs-staging () {
-  { ssh nuk-savers-production-node-01 'sudo journalctl -o cat -fu node-nuk-savers-staging-*' & ssh nuk-savers-production-node-02 'sudo journalctl -o cat -fu node-nuk-savers-staging-*' & ssh nuk-savers-production-node-03 'sudo journalctl -o cat -fu node-nuk-savers-staging-*' } | bunyan
-}
-
-savers-logs-production () {
-  { ssh nuk-savers-production-node-01 'sudo journalctl -o cat -fu node-nuk-savers-production-*' & ssh nuk-savers-production-node-02 'sudo journalctl -o cat -fu node-nuk-savers-production-*' & ssh nuk-savers-production-node-03 'sudo journalctl -o cat -fu node-nuk-savers-production-*' } | bunyan
 }
 
 # tabtab source for yarn package
@@ -135,5 +91,3 @@ transfer() {
 }
 
 alias transfer=transfer
-
-# export LSCOLORS="Gxfxcxdxbxegedabagacad"
