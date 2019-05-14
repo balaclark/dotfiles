@@ -298,7 +298,7 @@
 
     nnoremap <silent> <Leader>o :Files<CR>
     nnoremap <silent> <Leader>g :GFiles?<CR>
-    nnoremap <silent> <Leader>* :Ag!<CR>
+    " nnoremap <silent> <Leader>* :Ag!<CR>
     nnoremap <silent> <Leader><Enter> :Buffers<CR>
 
     " Use FZF to fuzzy find tags
