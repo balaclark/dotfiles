@@ -84,7 +84,7 @@ mo () {
 
 # tabtab source for yarn package
 # uninstall by removing these lines or running `tabtab uninstall yarn`
-[[ -f /Users/balac/.config/yarn/global/node_modules/tabtab/.completions/yarn.zsh ]] && . /Users/balac/.config/yarn/global/node_modules/tabtab/.completions/yarn.zsh
+[[ -f /Users/bclark/.config/yarn/global/node_modules/tabtab/.completions/yarn.zsh ]] && . /Users/bclark/.config/yarn/global/node_modules/tabtab/.completions/yarn.zsh
 
 transfer() {
     curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename $1) | tee /dev/null;
