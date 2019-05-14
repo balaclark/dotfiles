@@ -287,6 +287,7 @@
   " Language support
   Plug 'sheerun/vim-polyglot'
   Plug 'fatih/vim-go'
+  Plug 'jparise/vim-graphql'
 
   " Fuzzy file search
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
