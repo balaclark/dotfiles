@@ -288,6 +288,7 @@
   Plug 'sheerun/vim-polyglot'
   Plug 'fatih/vim-go'
   Plug 'jparise/vim-graphql'
+  Plug 'fgsch/vim-varnish'
 
   " Fuzzy file search
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
@@ -501,6 +502,9 @@
 
   " fancy case-insensitive replace (and more)
   Plug 'tpope/tpope-vim-abolish'
+
+  " display import size
+  Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
   " colorschemes
   Plug 'NLKNguyen/papercolor-theme'
