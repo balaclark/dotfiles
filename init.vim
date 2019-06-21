@@ -230,12 +230,14 @@
   " select function
   let @c = 'vf{%'
 
-"" Platform Specific
+"" Git GUIs
   if has("nvim")
     " map <Leader>, :tabnew<bar>terminal lazygit<CR>
     map <Leader>, :tabnew<bar>terminal tig status<CR>
     " map <Leader>/ :split|terminal<CR>
   endif
+  nnoremap <Leader><Leader>g :!gitup<CR><CR>
+
 
 "" Neovim
   if has('nvim')
@@ -524,3 +526,6 @@
   let g:ale_javascript_jscs_executable = nrun#Which('jscs')
   let g:ale_javascript_eslint_executable = nrun#Which('eslint')
   let g:ale_javascript_standard_executable = nrun#Which('standard')
+
+" open the current buffer in the default app
+  nnoremap <Leader><Leader>o :!open %<CR><CR>
