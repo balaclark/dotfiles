@@ -36,6 +36,7 @@ zstyle ':prezto:load' pmodule \
   'homebrew' \
   'node' \
   'osx' \
+  'contrib-prompt' \
   'prompt' \
   'spectrum' \
   'terminal' \

@@ -64,8 +64,6 @@ eval "$(basher init -)"
 
 export PATH=$PATH:~/.mongodb/versions/mongodb-current/bin
 
-alias tgp="yarn test && git push"
-
 # setup terminal tab title
 function title {
     if [ "$1" ]
