@@ -50,3 +50,14 @@ alias moon='curl http://wttr.in/Moon'
 # zsh no-autocorrect
 alias cap='nocorrect cap '
 alias jest='nocorrect jest '
+
+# rocket
+alias tdd='npm run tdd'
+alias dev='npm run dev'
+alias stag='npm run dev:stag'
+alias prod='npm run dev:prod'
+alias prodf='npm run prod-with-fixtures'
+alias cyp='npm run cypress:open'
+alias gcn='git commit --no-verify'
+alias gpn='git push --no-verify'
+alias genf='npm run generate-fixtures'
