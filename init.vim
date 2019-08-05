@@ -523,7 +523,7 @@
 
 "" Set colorscheme
   set background=dark
-  colorscheme papercolor
+  colorscheme moonfly
 
 " use linters from a project's node_modules when possible
   let g:ale_javascript_jshint_executable = nrun#Which('jshint')
