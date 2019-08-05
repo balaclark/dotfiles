@@ -242,7 +242,7 @@
 "" Neovim
   if has('nvim')
     " use true colours in the terminal
-    set termguicolors
+    set termguicolors  " enable true colors support
 
     " makes the cursor a pipe in insert-mode, and a block in normal-mode
     :let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -417,7 +417,8 @@
         let b:deoplete_disable_auto_complete = 0
       endfunction
 
-    Plug 'junegunn/vim-peekaboo'
+    " view saved macros
+    " Plug 'junegunn/vim-peekaboo'
 
   endif
 
@@ -431,9 +432,9 @@
   " Multiple cursors
   Plug 'terryma/vim-multiple-cursors'
 
-  " Use `Ctrl-L` to clear the highlighting of :set hlsearch.
+  " Use `Ctrl-i` to clear the highlighting of :set hlsearch.
   " (needs to come above vim-move)
-  nnoremap <silent> <C-l> :nohlsearch<CR>
+  nnoremap <silent> <C-i> :nohlsearch<CR>
 
   " Move lines
   Plug 'matze/vim-move'
@@ -514,12 +515,15 @@
   Plug 'vim-scripts/moria'
   Plug 'dracula/vim'
   Plug 'bluz71/vim-moonfly-colors'
+  Plug 'ayu-theme/ayu-vim'
+    let ayucolor="dark"
+  Plug 'drewtempelmeyer/palenight.vim'
 
   call plug#end()
 
 "" Set colorscheme
   set background=dark
-  colorscheme moonfly
+  colorscheme papercolor
 
 " use linters from a project's node_modules when possible
   let g:ale_javascript_jshint_executable = nrun#Which('jshint')
