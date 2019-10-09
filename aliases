@@ -32,6 +32,9 @@ ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in Ma
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 alias gst='git status'
 
+# cd to git root, requires git root alias in .gitconfig
+alias cdroot='cd $(git root)'
+
 alias gpr='gpr() { git fetch && git checkout origin/pr/$1 && pliers -t assets_v2/pliers.js build }; gpr'
 alias gmpr='gmpr() { git fetch && git merge origin/pr/$1 && pliers -t assets_v2/pliers.js build }; gmpr'
 
@@ -61,3 +64,4 @@ alias cyp='npm run cypress:open'
 alias gcn='git commit --no-verify'
 alias gpn='git push --no-verify'
 alias genf='npm run generate-fixtures'
+alias lnat='npm run compile && rm -rf ../rocket/node_modules/@condenast/atelier-components/dist && cp -fr dist ../rocket/node_modules/@condenast/atelier-components/dist'
