@@ -234,7 +234,8 @@
   if has("nvim")
     " map <Leader>, :tabnew<bar>terminal lazygit<CR>
     map <Leader>, :tabnew<bar>terminal tig status<CR>
-    " map <Leader>/ :split|terminal<CR>
+    " rocket specific “watch current spec file” command
+    map <Leader>tt :vsplit<bar>terminal cd $(git rev-parse --git-dir) && npm run tdd %<CR>
   endif
   nnoremap <Leader><Leader>g :!gitup<CR><CR>
 
