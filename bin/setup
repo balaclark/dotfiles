@@ -49,6 +49,9 @@ link_dotfiles() {
 
   ln -sf "$DOTHOME/init.vim" "$HOME/.config/nvim/init.vim"
   e_success ".config/nvim/init.vim"
+
+  ln -sf "$DOTHOME/kitty.conf" "$HOME/.config/kitty/kitty.conf"
+  e_success ".config/kitty/kitty.conf"
 }
 
 print_messages() {

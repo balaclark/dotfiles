@@ -233,9 +233,10 @@
 "" Git GUIs
   if has("nvim")
     " map <Leader>, :tabnew<bar>terminal lazygit<CR>
-    map <Leader>, :tabnew<bar>terminal tig status<CR>
+    map <Leader>, :tabnew<bar>terminal TERM=xterm tig status<CR>
     " rocket specific “watch current spec file” command
-    map <Leader>tt :vsplit<bar>terminal cd $(git rev-parse --git-dir) && npm run tdd %<CR>
+    map <Leader>tt :botright vsplit<bar>terminal cd $(git rev-parse --git-dir) && npm run tdd %<CR>
+    map <Leader>tg :botright vsplit<bar>terminal cd $(git rev-parse --git-dir) && npm run tdd:components %<CR>
   endif
   nnoremap <Leader><Leader>g :!gitup<CR><CR>
 
@@ -292,6 +293,10 @@
   Plug 'fatih/vim-go'
   Plug 'jparise/vim-graphql'
   Plug 'fgsch/vim-varnish'
+
+  " typescript
+  Plug 'leafgarland/typescript-vim'
+  Plug 'Shougo/vimproc.vim', { 'do': 'npm install --global typescript && make -f make_mac.mak' }
 
   " Fuzzy file search
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
@@ -429,6 +434,7 @@
   Plug 'tpope/vim-rhubarb'
 
     nnoremap <Leader>b :Gblame<CR>
+    nnoremap <Leader>br :Gbrowse<CR>
 
   " Multiple cursors
   Plug 'terryma/vim-multiple-cursors'
@@ -510,6 +516,9 @@
   " display import size
   Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
+  " keeps vim windows stable on layout changes
+  Plug 'gillyb/stable-windows'
+
   " colorschemes
   Plug 'NLKNguyen/papercolor-theme'
   Plug 'larsbs/vimterial'
@@ -519,6 +528,7 @@
   Plug 'ayu-theme/ayu-vim'
     let ayucolor="dark"
   Plug 'drewtempelmeyer/palenight.vim'
+  Plug 'herrbischoff/cobalt2.vim'
 
   call plug#end()
 

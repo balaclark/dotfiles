@@ -27,10 +27,10 @@ test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_in
 export PATH=./node_modules/.bin:$PATH
 export PATH=~/bin:$PATH
 
-RUBYGEMS="$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
-if [[ -d $RUBYGEMS ]]; then
-  PATH="$RUBYGEMS:$PATH"
-fi
+# RUBYGEMS="$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
+# if [[ -d $RUBYGEMS ]]; then
+#   PATH="$RUBYGEMS:$PATH"
+# fi
 
 #export TZ=UTC
 
@@ -53,10 +53,7 @@ export ANDROID_HOME=~/Library/Android/sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 export PATH=${PATH}:${ANDROID_HOME}/emulator
-alias emulator=${ANDROID_HOME}/tools/emulator
-
-export MYSQL_PATH=/usr/local/Cellar/mysql/5.7.18_1
-export PATH=$PATH:$MYSQL_PATH/bin
+alias emulator=${ANDROID_HOME}/emulator/emulator
 
 # basher
 export PATH="$HOME/.basher/bin:$PATH"
@@ -84,8 +81,10 @@ mo () {
 # uninstall by removing these lines or running `tabtab uninstall yarn`
 [[ -f /Users/bclark/.config/yarn/global/node_modules/tabtab/.completions/yarn.zsh ]] && . /Users/bclark/.config/yarn/global/node_modules/tabtab/.completions/yarn.zsh
 
-transfer() {
-    curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename $1) | tee /dev/null;
-}
+# transfer() {
+#     curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename $1) | tee /dev/null;
+# }
 
-alias transfer=transfer
+# alias transfer=transfer
+
+export TERM=xterm

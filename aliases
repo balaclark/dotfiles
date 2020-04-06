@@ -41,7 +41,7 @@ alias gmpr='gmpr() { git fetch && git merge origin/pr/$1 && pliers -t assets_v2/
 alias ghp='nave use 5.7.0 gh pr -B $(git rev-parse --abbrev-ref HEAD)'
 
 # from ben p
-alias tmux='tmux -2'
+alias tmux="TERM=screen-256color-bce tmux"
 alias lock='dm-tool lock'
 
 # tig aliases
@@ -56,6 +56,7 @@ alias jest='nocorrect jest '
 
 # rocket
 alias tdd='npm run tdd'
+alias gtdd='npm run tdd:components'
 alias dev='npm run dev'
 alias stag='npm run dev:stag'
 alias prod='npm run dev:prod'
@@ -63,5 +64,8 @@ alias prodf='npm run prod-with-fixtures'
 alias cyp='npm run cypress:open'
 alias gcn='git commit --no-verify'
 alias gpn='git push --no-verify'
+alias gpfn='git push --no-verify --force'
 alias genf='npm run generate-fixtures'
 alias lnat='npm run compile && rm -rf ../rocket/node_modules/@condenast/atelier-components/dist && cp -fr dist ../rocket/node_modules/@condenast/atelier-components/dist'
+alias scom='npm run start:components'
+alias bcom='npm run build:components'
