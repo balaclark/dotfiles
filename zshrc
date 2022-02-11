@@ -12,6 +12,10 @@ if [ -e "${ZDOTDIR:-$HOME}/.aliases" ]; then
   source "${ZDOTDIR:-$HOME}/.aliases"
 fi
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 #eval `ssh-agent -s`
 #ssh-add
 
@@ -22,10 +26,13 @@ ulimit -n 10000
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
 
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 
 export PATH=./node_modules/.bin:$PATH
 export PATH=~/bin:$PATH
+
+#python 2
+export PATH=~/Library/Python/2.7/bin:$PATH
 
 # RUBYGEMS="$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
 # if [[ -d $RUBYGEMS ]]; then
@@ -55,9 +62,6 @@ export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 export PATH=${PATH}:${ANDROID_HOME}/emulator
 alias emulator=${ANDROID_HOME}/emulator/emulator
 
-# basher
-export PATH="$HOME/.basher/bin:$PATH"
-eval "$(basher init -)"
 
 export PATH=$PATH:~/.mongodb/versions/mongodb-current/bin
 
@@ -88,3 +92,12 @@ mo () {
 # alias transfer=transfer
 
 export TERM=xterm
+
+export PATH="$HOME/.basher/bin:$PATH"
+eval "$(basher init - zsh)"
+
+PATH="/Users/bclark/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/bclark/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/bclark/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/bclark/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/bclark/perl5"; export PERL_MM_OPT;
