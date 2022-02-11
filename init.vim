@@ -246,9 +246,6 @@
     " use true colours in the terminal
     set termguicolors  " enable true colors support
 
-    " makes the cursor a pipe in insert-mode, and a block in normal-mode
-    :let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
     " remove terminals from the buffer list
     " autocmd TermOpen * set nobuflisted
 
@@ -358,7 +355,7 @@
   " npm-which support in vim, used to configure vim to use locally installed linters
   Plug 'jaawerth/nrun.vim', { 'do': 'type npm && npm install --global npm-which' }
 
-  Plug 'w0rp/ale'
+  Plug 'dense-analysis/ale'
 
     nmap <silent> <S-k> <Plug>(ale_previous_wrap)
     nmap <silent> <S-j> <Plug>(ale_next_wrap)
@@ -370,15 +367,23 @@
     \  'html': [ 'htmlhint' ]
     \}
 
+    let g:ale_fixers = {
+    \   'javascript': ['prettier'],
+    \   'css': ['prettier'],
+    \   'html': ['prettier'],
+    \}
+
+    let g:ale_fix_on_save = 1
+
   " Autocomplete
   if has('nvim')
     " https://gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
       let g:deoplete#enable_at_startup = 1
-      let g:deoplete#file#enable_buffer_path = 1
-      if !exists('g:deoplete#omni#input_patterns')
-        let g:deoplete#omni#input_patterns = {}
-      endif
+      " let g:deoplete#file#enable_buffer_path = 1
+      " if !exists('g:deoplete#omni#input_patterns')
+      "   let g:deoplete#omni#input_patterns = {}
+      " endif
       " let g:deoplete#disable_auto_complete = 1
       autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -498,14 +503,14 @@
   " auto close brackets
   Plug 'rstacruz/vim-closer'
 
-  Plug 'prettier/vim-prettier', {
-    \ 'do': 'yarn install',
-    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+  " Plug 'prettier/vim-prettier', {
+  "   \ 'do': 'yarn install',
+  "   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 
-    let g:prettier#exec_cmd_async = 1
+  "   let g:prettier#exec_cmd_async = 1
 
-    " autocmd BufWritePre,TextChanged,InsertLeave *.js* PrettierAsync
-    autocmd BufWritePre *.js* PrettierAsync
+  "   " autocmd BufWritePre,TextChanged,InsertLeave *.js* PrettierAsync
+  "   autocmd BufWritePre *.js* PrettierAsync
 
   " make gui only color schemes work in terminal
   Plug 'godlygeek/csapprox'
@@ -521,20 +526,17 @@
 
   " colorschemes
   Plug 'NLKNguyen/papercolor-theme'
-  Plug 'larsbs/vimterial'
-  Plug 'vim-scripts/moria'
   Plug 'dracula/vim'
   Plug 'bluz71/vim-moonfly-colors'
   Plug 'ayu-theme/ayu-vim'
     let ayucolor="dark"
   Plug 'drewtempelmeyer/palenight.vim'
-  Plug 'herrbischoff/cobalt2.vim'
 
   call plug#end()
 
 "" Set colorscheme
   set background=dark
-  colorscheme moonfly
+  colorscheme ayu
 
 " use linters from a project's node_modules when possible
   let g:ale_javascript_jshint_executable = nrun#Which('jshint')
