@@ -1,7 +1,20 @@
-# Source Prezto.
+# Source correct ZSH thingy
+
+# zpretzo
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+
+# oh my zsh
+if [[ -s "$HOME/.oh-my-zsh" ]]; then
+  export ZSH="$HOME/.oh-my-zsh"
+  ZSH_THEME="robbyrussell"
+
+  plugins=(git)
+
+  source $ZSH/oh-my-zsh.sh
+fi
+
 
 # Customize to your needs...
 
@@ -12,9 +25,16 @@ if [ -e "${ZDOTDIR:-$HOME}/.aliases" ]; then
   source "${ZDOTDIR:-$HOME}/.aliases"
 fi
 
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
+
+[[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
+
+[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
 
 #eval `ssh-agent -s`
 #ssh-add
@@ -93,8 +113,8 @@ mo () {
 
 export TERM=xterm
 
-export PATH="$HOME/.basher/bin:$PATH"
-eval "$(basher init - zsh)"
+# export PATH="$HOME/.basher/bin:$PATH"
+# eval "$(basher init - zsh)"
 
 PATH="/Users/bclark/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/Users/bclark/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
